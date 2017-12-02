@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1027973932227772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   Drag: 30
   StopThreshold: 0.1
   MaxSpeed: 6
+  MaxEnergy: 100
+  EnergyDrain: 20
   DebugText: {fileID: 0}
   Role: 0
   Destination: {x: 0, y: 0}
