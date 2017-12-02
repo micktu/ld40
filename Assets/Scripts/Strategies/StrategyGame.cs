@@ -134,6 +134,13 @@ public class StrategyGame : StrategyBase
         }
         Enemies.Clear();
 
+        EnemySpawner[] spawners = GameObject.FindObjectsOfType<EnemySpawner>();
+        foreach (var spawner in spawners)
+        {
+            Destroy(spawner.gameObject);
+        }
+
+
         _gameManager.EnterMainMenu();
 
         Destroy(Level);

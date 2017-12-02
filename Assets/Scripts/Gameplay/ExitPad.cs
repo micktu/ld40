@@ -17,6 +17,8 @@ public class ExitPad : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-       _game.PlayerOnExit = true;
+        if (other.GetComponent<Character>() != null) {
+           _game.PlayerOnExit = true;
+        }
     }
 }

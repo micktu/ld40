@@ -32,6 +32,11 @@ public class HackingArea : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.GetComponent<Character>() == null)
+        {
+            return;
+        }
+
         if (_hackable) {
             terminal.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             _game.CoinsIncome += terminalPrice;
@@ -41,6 +46,10 @@ public class HackingArea : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (other.GetComponent<Character>() == null)
+        {
+            return;
+        }
         terminal.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         stopHacking();
     }
