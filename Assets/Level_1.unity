@@ -3965,6 +3965,90 @@ Transform:
   m_PrefabParentObject: {fileID: 4437905848360402, guid: 8f8718ad5d20bf145bddab2c28a62545,
     type: 2}
   m_PrefabInternal: {fileID: 1647366851}
+--- !u!1 &1730690860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1730690862}
+  - component: {fileID: 1730690861}
+  m_Layer: 0
+  m_Name: NavGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1730690861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1730690860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAAAQIezknJnDEwIAAIYEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1U9tum0AQ/RWL5yYCYtKmb62duJWS2IpT9Xm8DGblZRftpY4d+d87uyyBOO0TcM5czpwZXhMwLTL7BJar5Osk+zRJuFENWs3ZN7kVSGBKoJO8Urq5Lbc4U8YagisQBonSyvpsSdDrJHmhx43POMTMo39OTvTGUFrUQ9i/o5xkApoWyzU/4hB8lV8WMd6/hlCpSoxR6WXuaaaE4CaKSeyh9VyybmvUmBBfcqDZgog01KuRb2tLn/k4e1lVBm2UpuEw55pM6som35Wtfa0GzK7T9weE842KLA+6uqIPH/iLLNCVVs2Pvm+W+h625mz3BAcGxo6sHcPzQXoWbNqD2MFG4O8a5aNaaOVkSaTVzqc6g/l8+HwbbVYj2w14J7UH+76u/f+WaIZTmP5lJnizCU5OO2AtVDA87B81becnCQ7HYWIFQr2KXwafYTu+okjccW0sUXFKcFbdc7lbaF6Oo3t8zo295w3vnPQn4efZKKd9dHIbTPbjOztTWmKA4+gtShD2sKK+9nznZ9yo8xlzB8yqfieR6/+bs5QAD/Fpekat1P5tu6ZW+wc09dJZwSUOoj3xSMbOlJTdSY5t6dPWTlfARmlbx8v3t5jkaQHV9VWxwS/Z52k6vcCqKK7LCsr0hhEESThWLmlOEKtOaLSH1iyH4pIO01f0S5osNLTh9yg17Bf82KiR5VxWas00olx2FYLw019QSwMEFAAACAgAABAh7G7hdEs0AAAANwAAABIAJABncmFwaDBfZWRpdG9yLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVsrJT85OTVGyUigpKk3VUVAqzsgvd60oKUoECqUl5hSDxAoyy/JLgHwl59S8ktQipVoAUEsDBBQAAAgIAAAQIeydoApLawAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0DM01FFQSi9KLMgoBoqAOaWZKSB2tJKRgWlimpmxaVKqhaG5iYGJbmqaqalZSlpiioFlMlAoUSkWqL6ksiDVLzE3FaInILEkIy0zLyUzL13PvSgzxR1ktFJsLQBQSwECLQAUAAAICAAAECHs5JyZwxMCAACGBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHsbuF0SzQAAAA3AAAAEgAkAAAAAAAAAAAAAABgAgAAZ3JhcGgwX2VkaXRvci5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABAh7J2gCktrAAAAeAAAAAkAJAAAAAAAAAAAAAAA6AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAwADABwBAACeAwAAAAA=
+    upgradeData: 
+    data_backup: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _NodeConnection: {r: 1, g: 1, b: 1, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors: []
+  tagNames: []
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 0
+  maxFrameTime: 1
+  minAreaSize: 0
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
+--- !u!4 &1730690862
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1730690860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1740254722
 Prefab:
   m_ObjectHideFlags: 0
