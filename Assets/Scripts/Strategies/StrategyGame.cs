@@ -11,10 +11,11 @@ public class StrategyGame : StrategyBase
     public Character CharacterPrefab, DronePrefab;
 
     public Character Character, Drone;
+    public GameObject Level;
 
     protected override void OnInit()
     {
-        // Level.gameObject.SetActive(false);
+        Level.gameObject.SetActive(false);
         PlayerInput.Init();
         PlayerInput.enabled = false;
         ContainerHUD.SetActive(false);
@@ -35,7 +36,7 @@ public class StrategyGame : StrategyBase
 
     protected override void OnEnter(StrategyType lastStrategy)
     {
-        // Level.gameObject.SetActive(true);
+        Level.gameObject.SetActive(true);
         PlayerInput.enabled = true;
         Character.gameObject.SetActive(true);
         Drone.gameObject.SetActive(true);
@@ -45,7 +46,7 @@ public class StrategyGame : StrategyBase
 
     protected override void OnLeave()
     {
-        // Level.gameObject.SetActive(false);
+        Level.gameObject.SetActive(false);
         PlayerInput.enabled = false;
         Character.gameObject.SetActive(false);
         Drone.gameObject.SetActive(false);
