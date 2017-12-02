@@ -23,7 +23,6 @@ public class StrategyGame : StrategyBase
     public int Coins = 0;
     public float CoinsIncome = 0f;
 
-<<<<<<< HEAD
     private int _lastEnemyPositionIndex;
 
     private Coroutine _spawnCoroutine;
@@ -34,10 +33,10 @@ public class StrategyGame : StrategyBase
     {
         get { return _enemies; }
     }
-=======
+
     public int FinalCost = 300;
     public Text FinalText;
->>>>>>> 6fee7a0cf9adc29bdc11a6fbb1c52c4a1f22070f
+
 
     protected override void OnInit()
     {
