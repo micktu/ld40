@@ -13,6 +13,9 @@ public class StrategyGame : StrategyBase
     public Character Character, Drone;
     public GameObject Level;
 
+    public int Coins = 0;
+    public float CoinsIncome = 0f;
+
     protected override void OnInit()
     {
         Level.gameObject.SetActive(false);
@@ -55,6 +58,6 @@ public class StrategyGame : StrategyBase
 
     void Update()
     {
-
+        Coins += (int) CoinsIncome;
     }
 }
