@@ -701,6 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerInput: {fileID: 1664432577}
   ContainerHUD: {fileID: 1979225893}
+  DebugText: {fileID: 207846136}
   CharacterPrefab: {fileID: 114861672582602638, guid: f73d371a33601cc40843947d56902e1d,
     type: 2}
   DronePrefab: {fileID: 114939046618524784, guid: 2d4cdcc156faf0f4f8fbb851fb10c2be,
@@ -742,7 +743,7 @@ GameObject:
   - component: {fileID: 1939209963}
   - component: {fileID: 1939209962}
   - component: {fileID: 1939209961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +871,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979225893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: 422.78787, z: 0}
+  m_LocalPosition: {x: -640, y: 295.4144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 207846135}
@@ -964,8 +965,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989225320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 577.5, y: 381.5, z: 0}
-  m_LocalScale: {x: 0.90234375, y: 0.90234375, z: 0.90234375}
+  m_LocalPosition: {x: 826.5, y: 381.5, z: 0}
+  m_LocalScale: {x: 1.2914063, y: 1.2914063, z: 1.2914063}
   m_Children:
   - {fileID: 1635779320}
   - {fileID: 1979225894}

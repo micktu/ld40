@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class StrategyGame : StrategyBase
 {
     public PlayerInput PlayerInput;
     public GameObject ContainerHUD;
+
+    public Text DebugText;
 
     public Character CharacterPrefab, DronePrefab;
 
@@ -19,6 +22,7 @@ public class StrategyGame : StrategyBase
         Character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         Character.gameObject.SetActive(false);
         Character.Role = CharacterRole.Main;
+        Character.DebugText = DebugText;
 
         Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
         Drone.gameObject.SetActive(false);
