@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     private StrategyType _activeStrategy, _lastStrategy;
     private bool _strategyChangePending;
 
+    public Canvas Canvas;
+
     public StrategyBase ActiveStrategy
     {
         get { return _strategies[_activeStrategy]; }
@@ -24,6 +27,23 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _instance = this;
+
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(Canvas.gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "main") return;
+
+        Level = GameObject.Find("Level");
+
+        var game = _strategies[StrategyType.Game] as StrategyGame;
+        game.Level = Level;
+        game.InitLevel();
+        Enter(StrategyType.Game);
     }
 
     void OnEnable()
@@ -77,8 +97,8 @@ public class GameManager : MonoBehaviour
 
     public void EnterGame(string levelName)
     {
-        //var game = _strategies[StrategyType.Game] as StrategyGame;
-        //game.Level.Init(LevelIndex.Levels[levelName]);
-        Enter(StrategyType.Game);
+        Debug.Log("asd");
+        SceneManager.LoadScene(levelName);
     }
+
 }

@@ -42,11 +42,34 @@ public class StrategyGame : StrategyBase
     {
 	    _gameManager = GameManager.Instance;
 
-        Level.gameObject.SetActive(false);
+        //Level.gameObject.SetActive(false);
         PlayerInput.Init();
         PlayerInput.enabled = false;
         ContainerHUD.SetActive(false);
         FinalText.gameObject.SetActive(false);
+
+        var camera = Camera.main;
+        var halfHeight = camera.orthographicSize;
+        var halfWidth = halfHeight * camera.aspect;
+    }
+
+    public void InitLevel()
+    {
+        if (Character != null)
+        {
+            Destroy(Character.gameObject);
+        }
+
+        if (Drone != null)
+        {
+            Destroy(Drone.gameObject);
+        }
+
+        foreach (var enemy in Enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        Enemies.Clear();
 
         Character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         Character.gameObject.SetActive(false);
@@ -56,10 +79,6 @@ public class StrategyGame : StrategyBase
         Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
         Drone.gameObject.SetActive(false);
         Drone.Role = CharacterRole.Drone;
-
-        var camera = Camera.main;
-        var halfHeight = camera.orthographicSize;
-        var halfWidth = halfHeight * camera.aspect;
     }
 
     protected override void OnEnter(StrategyType lastStrategy)
@@ -76,9 +95,12 @@ public class StrategyGame : StrategyBase
 
     protected override void OnLeave()
     {
-        StopCoroutine(_spawnCoroutine);
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+        }
 
-        Level.gameObject.SetActive(false);
+        //Level.gameObject.SetActive(false);
         PlayerInput.enabled = false;
         Character.gameObject.SetActive(false);
         Drone.gameObject.SetActive(false);
