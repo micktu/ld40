@@ -95,12 +95,12 @@ public class Character : Entity {
             points.Add(position);
             var direction = (point - position).normalized;
 
-            for (var i = 0; i < 50; i++)
+            for (var i = 0; i < 2; i++)
             {
-                var hit = Physics2D.Raycast(position, direction, 10.0f, _laserLayerMask);
+                var hit = Physics2D.Raycast(position, direction, 20.0f, _laserLayerMask);
                 if (hit.collider == null)
                 {
-                    points.Add(position + direction * 10.0f);
+                    points.Add(position + direction * 20.0f);
                     break;
                 }
 
@@ -109,7 +109,7 @@ public class Character : Entity {
                 var enemy = hit.collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.DoLaserHit(40.0f * Time.deltaTime);
+                    enemy.DoLaserHit(50.0f * Time.deltaTime);
                     break;
                 }
 
