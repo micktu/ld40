@@ -19,6 +19,9 @@ public class Character : Entity {
 
     private string _hAxis, _vAxis;
 
+    public Vector2 Destination;
+    private bool isMoving;
+
     private List<VectorLine> _laserLines = new List<VectorLine>();
 
     protected new void Start()
@@ -37,22 +40,42 @@ public class Character : Entity {
         _laserLines.Add(line);
     }
 
-    protected new void Update () {
-		var axis = new Vector2();
+    protected new void Update()
+    {
+        if (Input.GetButton("Fire2"))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 point = ray.IntersectXY();
+            Destination = point;
+        }
 
-		axis.x = Input.GetAxisRaw(_hAxis);
-		axis.y = Input.GetAxisRaw(_vAxis);
+        {
+            Vector2 direction;
 
-        if (Mathf.Abs(axis.x) < DeadZone) axis.x = 0.0f;
-		else axis.x = Mathf.Sign(axis.x);
+            if (Role == CharacterRole.Main)
+            {
+                direction.x = Input.GetAxisRaw(_hAxis);
+                direction.y = Input.GetAxisRaw(_vAxis);
 
-		if (Mathf.Abs(axis.y) < DeadZone) axis.y = 0.0f;
-		else axis.y = Mathf.Sign(axis.y);
+                if (Mathf.Abs(direction.x) < DeadZone) direction.x = 0.0f;
+                else direction.x = Mathf.Sign(direction.x);
 
-		_velocity += axis * Acceleration * Time.deltaTime;
+                if (Mathf.Abs(direction.y) < DeadZone) direction.y = 0.0f;
+                else direction.y = Mathf.Sign(direction.y);
+                _velocity += direction * Acceleration * Time.deltaTime;
+            }
+            else
+            {
+                var position = transform.position;
+                var distance = Destination - (Vector2)position;
 
-		base.Update();
+                var acceleration = Acceleration * distance;
+                var damping = _velocity * 2.0f * Mathf.Sqrt(Acceleration);
+                _velocity += (acceleration - damping) * Time.deltaTime;
+            }
 
+            base.Update();
+        }
 
         if (Input.GetButton("Fire1"))
         {
