@@ -116,6 +116,14 @@ public class Character : Entity {
                 if (enemy != null)
                 {
                     enemy.DoLaserHit(100.0f * Time.deltaTime);
+                    float ed = _game.EnergyDrain * Time.deltaTime;
+                    if (_game.Energy >= ed)
+                    {
+                        _game.Energy -= ed;
+                    }
+                    else {
+                        _game.Energy = 0;
+                    }
                     break;
                 }
 

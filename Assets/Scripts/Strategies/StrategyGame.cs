@@ -37,6 +37,22 @@ public class StrategyGame : StrategyBase
     public int FinalCost = 300;
     public Text FinalText;
 
+    public float HitPointsMax = 100f;
+    public float HitPoints = 100f;
+    public float EnergyMax = 100f;
+    public float EnergyDrain = 10f;
+    public float Energy = 10f;
+    public float EnergyGain = 10f;
+    private Coroutine _spawnCoroutine;
+
+    public IEnumerator RegenEnergy()
+    {
+        while (true)
+        {
+            Energy += EnergyGain;
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
 
     protected override void OnInit()
     {
@@ -75,10 +91,16 @@ public class StrategyGame : StrategyBase
         Drone.gameObject.SetActive(true);
        
         ContainerHUD.SetActive(true);
+        _spawnCoroutine = StartCoroutine(RegenEnergy());
     }
 
     protected override void OnLeave()
     {
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+        }
+
         if (Level != null)
         { 
             Level.gameObject.SetActive(false);
@@ -102,8 +124,12 @@ public class StrategyGame : StrategyBase
 
     void Update()
     {
+        if (Energy >= EnergyMax) {
+            LeaveLevel();
+            return;
+        }
         Coins += (int) CoinsIncome;
-        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}", Coins, CoinsIncome);
+        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}\nEnergy: {2}", Coins, CoinsIncome, Energy);
         if (Coins >= FinalCost) {
             FinalText.gameObject.SetActive(true);
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
@@ -117,6 +143,12 @@ public class StrategyGame : StrategyBase
     {
         Coins = 0;
         CoinsIncome = 0.0f;
+        Energy = 0f;
+
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+        }
 
         if (Character != null)
         {
