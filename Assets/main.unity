@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 207846137}
   - component: {fileID: 207846136}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 300, y: 30}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &207846136
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Coins
 --- !u!222 &207846137
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -751,7 +751,7 @@ MonoBehaviour:
   ContainerHUD: {fileID: 1979225893}
   ExitPad: {fileID: 0}
   PlayerOnExit: 0
-  DebugText: {fileID: 207846136}
+  CoinsText: {fileID: 207846136}
   CharacterPrefab: {fileID: 114861672582602638, guid: f73d371a33601cc40843947d56902e1d,
     type: 2}
   DronePrefab: {fileID: 114939046618524784, guid: 2d4cdcc156faf0f4f8fbb851fb10c2be,
@@ -763,7 +763,7 @@ MonoBehaviour:
   Level: {fileID: 0}
   Coins: 0
   CoinsIncome: 0
-  FinalCost: 300
+  FinalCost: 250
   FinalText: {fileID: 1459578584}
 --- !u!114 &1664432576
 MonoBehaviour:
@@ -810,7 +810,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979225893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: 446.4305, z: 0}
+  m_LocalPosition: {x: -640, y: 447.5931, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 207846135}
@@ -905,7 +905,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989225320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 550.5, y: 384, z: 0}
+  m_LocalPosition: {x: 550.5, y: 385, z: 0}
   m_LocalScale: {x: 0.86015624, y: 0.86015624, z: 0.86015624}
   m_Children:
   - {fileID: 1635779320}

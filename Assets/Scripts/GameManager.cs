@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
         _instance = this;
 
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(Canvas.gameObject);
+        DontDestroyOnLoad(FindObjectOfType<Canvas>().gameObject);
+        DontDestroyOnLoad(FindObjectOfType<EventSystem>().gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

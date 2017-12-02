@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class StrategyGame : StrategyBase
 {
@@ -12,7 +14,7 @@ public class StrategyGame : StrategyBase
     public GameObject ExitPad;
     public bool PlayerOnExit = false;
 
-    public Text DebugText;
+    public Text CoinsText;
 
     public Character CharacterPrefab, DronePrefab;
     public Enemy EnemyPrefab;
@@ -55,30 +57,16 @@ public class StrategyGame : StrategyBase
 
     public void InitLevel()
     {
-        if (Character != null)
-        {
-            Destroy(Character.gameObject);
-        }
-
-        if (Drone != null)
-        {
-            Destroy(Drone.gameObject);
-        }
-
-        foreach (var enemy in Enemies)
-        {
-            Destroy(enemy.gameObject);
-        }
-        Enemies.Clear();
-
         Character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         Character.gameObject.SetActive(false);
         Character.Role = CharacterRole.Main;
-        Character.DebugText = DebugText;
+        //Character.DebugText = DebugText;
 
         Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
         Drone.gameObject.SetActive(false);
         Drone.Role = CharacterRole.Drone;
+
+        ExitPad = Level.transform.Find("Exit").gameObject;
     }
 
     protected override void OnEnter(StrategyType lastStrategy)
@@ -100,11 +88,19 @@ public class StrategyGame : StrategyBase
             StopCoroutine(_spawnCoroutine);
         }
 
-        //Level.gameObject.SetActive(false);
-        PlayerInput.enabled = false;
-        Character.gameObject.SetActive(false);
-        Drone.gameObject.SetActive(false);
+        if (Level != null)
+        { 
+            Level.gameObject.SetActive(false);
+        }
+
+        if (Character != null)
+        {
+            Character.gameObject.SetActive(false);
+            Drone.gameObject.SetActive(false);
+        }
+
         ContainerHUD.SetActive(false);
+        PlayerInput.enabled = false;
     }
 
     IEnumerator SpawnEnemies()
@@ -131,12 +127,39 @@ public class StrategyGame : StrategyBase
     void Update()
     {
         Coins += (int) CoinsIncome;
+        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}", Coins, CoinsIncome);
         if (Coins >= FinalCost) {
             FinalText.gameObject.SetActive(true);
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             if (PlayerOnExit) {
-                _gameManager.EnterMainMenu();
+                LeaveLevel();
             }
         }
+    }
+
+    void LeaveLevel()
+    {
+        Coins = 0;
+        CoinsIncome = 0.0f;
+
+        if (Character != null)
+        {
+            Destroy(Character.gameObject);
+        }
+
+        if (Drone != null)
+        {
+            Destroy(Drone.gameObject);
+        }
+
+        foreach (var enemy in Enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        Enemies.Clear();
+
+        _gameManager.EnterMainMenu();
+
+        Destroy(Level);
     }
 }
