@@ -24,8 +24,14 @@ public class Character : Entity {
 
     private List<VectorLine> _laserLines = new List<VectorLine>();
 
+    private int _laserLayerMask;
+
     protected new void Start()
     {
+        _laserLayerMask = LayerMask.GetMask("Geometry", "Enemies");
+
+        Destination = transform.position;
+
         base.Start();
 
         _hAxis = Role == CharacterRole.Main ? "CharacterHorizontal" : "DroneHorizontal";
@@ -89,10 +95,9 @@ public class Character : Entity {
             points.Add(position);
             var direction = (point - position).normalized;
 
-            int i;
-            for (i = 0; i < 10; i++)
+            for (var i = 0; i < 50; i++)
             {
-                var hit = Physics2D.Raycast(position, direction, 10.0f, 1 << LayerMask.NameToLayer("Geometry"));
+                var hit = Physics2D.Raycast(position, direction, 10.0f, _laserLayerMask);
                 if (hit.collider == null)
                 {
                     points.Add(position + direction * 10.0f);
@@ -100,8 +105,16 @@ public class Character : Entity {
                 }
 
                 points.Add(hit.point);
+
+                var enemy = hit.collider.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.DoLaserHit(40.0f * Time.deltaTime);
+                    break;
+                }
+
                 direction = Vector2.Reflect(direction, hit.normal);
-                position = (Vector3)hit.point + direction * 0.01f;
+                position = (Vector3)hit.point + direction * 0.05f;
             }
 
             _laserLines[0].active = true;

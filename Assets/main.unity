@@ -589,6 +589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terminal: {fileID: 372851113}
+  terminalPrice: 1
+  totalCoins: 100
 --- !u!61 &417707303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -956,7 +958,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1329699179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.35, y: 2.23, z: 0}
+  m_LocalPosition: {x: -4.4, y: 3.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1132,9 +1134,13 @@ MonoBehaviour:
     type: 2}
   DronePrefab: {fileID: 114939046618524784, guid: 2d4cdcc156faf0f4f8fbb851fb10c2be,
     type: 2}
+  EnemyPrefab: {fileID: 114043684067904366, guid: a739df737d7fef14792f1584453e3c22,
+    type: 2}
   Character: {fileID: 0}
   Drone: {fileID: 0}
   Level: {fileID: 18335906}
+  Coins: 0
+  CoinsIncome: 0
 --- !u!114 &1664432576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,7 +1394,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1919843845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7299998, y: -1.4600002, z: 0}
+  m_LocalPosition: {x: -2.36, y: -3.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1506,7 +1512,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1939209960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8, y: 0.3299998, z: 0}
+  m_LocalPosition: {x: 2.64, y: -1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
