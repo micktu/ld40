@@ -3,10 +3,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get { return _instance; }
+    }
+
     private Dictionary<StrategyType, StrategyBase> _strategies;
 
     private StrategyType _activeStrategy, _lastStrategy;
     private bool _strategyChangePending;
+
+    public StrategyBase ActiveStrategy
+    {
+        get { return _strategies[_activeStrategy]; }
+    }
+
+    void Awake()
+    {
+        _instance = this;
+    }
 
     void OnEnable()
     {

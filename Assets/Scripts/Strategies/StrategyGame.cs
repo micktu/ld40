@@ -2,14 +2,27 @@
 
 public class StrategyGame : StrategyBase
 {
-    //public PlayerInput PlayerInput;
+    public PlayerInput PlayerInput;
     public GameObject ContainerHUD;
+
+    public Character CharacterPrefab, DronePrefab;
+
+    public Character Character, Drone;
 
     protected override void OnInit()
     {
         // Level.gameObject.SetActive(false);
-        // PlayerInput.gameObject.SetActive(false);
-        // ContainerHUD.SetActive(false);
+        PlayerInput.Init();
+        PlayerInput.enabled = false;
+        ContainerHUD.SetActive(false);
+
+        Character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
+        Character.gameObject.SetActive(false);
+        Character.Role = CharacterRole.Main;
+
+        Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
+        Drone.gameObject.SetActive(false);
+        Drone.Role = CharacterRole.Drone;
 
         var camera = Camera.main;
         var halfHeight = camera.orthographicSize;
@@ -19,18 +32,24 @@ public class StrategyGame : StrategyBase
     protected override void OnEnter(StrategyType lastStrategy)
     {
         // Level.gameObject.SetActive(true);
-        // PlayerInput.gameObject.SetActive(true);
-        // ContainerHUD.SetActive(true);
+        PlayerInput.enabled = true;
+        Character.gameObject.SetActive(true);
+        Drone.gameObject.SetActive(true);
+       
+        ContainerHUD.SetActive(true);
     }
 
     protected override void OnLeave()
     {
         // Level.gameObject.SetActive(false);
-        // PlayerInput.gameObject.SetActive(false);
-        // ContainerHUD.SetActive(false);
+        PlayerInput.enabled = false;
+        Character.gameObject.SetActive(false);
+        Drone.gameObject.SetActive(false);
+        ContainerHUD.SetActive(false);
     }
 
     void Update()
     {
+
     }
 }
