@@ -27,8 +27,6 @@ public class StrategyGame : StrategyBase
 
     private int _lastEnemyPositionIndex;
 
-    private Coroutine _spawnCoroutine;
-
     private List<Enemy> _enemies = new List<Enemy>();
 
     public List<Enemy> Enemies
@@ -77,17 +75,10 @@ public class StrategyGame : StrategyBase
         Drone.gameObject.SetActive(true);
        
         ContainerHUD.SetActive(true);
-
-        _spawnCoroutine = StartCoroutine(SpawnEnemies());
     }
 
     protected override void OnLeave()
     {
-        if (_spawnCoroutine != null)
-        {
-            StopCoroutine(_spawnCoroutine);
-        }
-
         if (Level != null)
         { 
             Level.gameObject.SetActive(false);
@@ -103,25 +94,10 @@ public class StrategyGame : StrategyBase
         PlayerInput.enabled = false;
     }
 
-    IEnumerator SpawnEnemies()
+    public void SpawnEnemy(Vector3 position)
     {
-        var positions = new List<Vector3>
-        {
-            new Vector3(0.0f, 0.0f),
-            new Vector3(4.0f, 0.0f),
-            new Vector3(0.0f, 4.0f),
-            new Vector3(4.0f, 4.0f),
-        };
-
-        while (true)
-        {
-            var index = (_lastEnemyPositionIndex + 1 + Random.Range(0, positions.Count - 1)) % positions.Count;
-            _lastEnemyPositionIndex = index;
-            var position = positions[index];
             var enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
             _enemies.Add(enemy);
-            yield return new WaitForSeconds(3.0f);
-        }
     }
 
     void Update()
