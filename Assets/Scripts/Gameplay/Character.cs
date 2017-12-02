@@ -33,7 +33,7 @@ public class Character : Entity {
             Vector3.zero,
             Vector3.zero,
         };
-        var line = new VectorLine("Laser1", points, 3.0f);
+        var line = new VectorLine("Laser1", points, 3.0f, LineType.Continuous, Joins.Weld);
         _laserLines.Add(line);
     }
 
@@ -77,13 +77,8 @@ public class Character : Entity {
                 }
 
                 points.Add(hit.point);
-                direction = Vector2.Reflect(direction, -hit.normal);
-                position = (Vector3)hit.point + direction * 0.1f;
-            }
-
-            if (DebugText != null)
-            {
-                DebugText.text = String.Format("{0}", points.Count);
+                direction = Vector2.Reflect(direction, hit.normal);
+                position = (Vector3)hit.point + direction * 0.01f;
             }
 
             _laserLines[0].active = true;
