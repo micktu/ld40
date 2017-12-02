@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class StrategyGame : StrategyBase
 {
+	private GameManager _gameManager;
+
     public PlayerInput PlayerInput;
     public GameObject ContainerHUD;
+    public GameObject ExitPad;
+    public bool PlayerOnExit = false;
 
     public Text DebugText;
 
@@ -19,6 +23,7 @@ public class StrategyGame : StrategyBase
     public int Coins = 0;
     public float CoinsIncome = 0f;
 
+<<<<<<< HEAD
     private int _lastEnemyPositionIndex;
 
     private Coroutine _spawnCoroutine;
@@ -29,13 +34,20 @@ public class StrategyGame : StrategyBase
     {
         get { return _enemies; }
     }
+=======
+    public int FinalCost = 300;
+    public Text FinalText;
+>>>>>>> 6fee7a0cf9adc29bdc11a6fbb1c52c4a1f22070f
 
     protected override void OnInit()
     {
+	    _gameManager = GameManager.Instance;
+
         Level.gameObject.SetActive(false);
         PlayerInput.Init();
         PlayerInput.enabled = false;
         ContainerHUD.SetActive(false);
+        FinalText.gameObject.SetActive(false);
 
         Character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         Character.gameObject.SetActive(false);
@@ -98,5 +110,12 @@ public class StrategyGame : StrategyBase
     void Update()
     {
         Coins += (int) CoinsIncome;
+        if (Coins >= FinalCost) {
+            FinalText.gameObject.SetActive(true);
+            ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            if (PlayerOnExit) {
+                _gameManager.EnterMainMenu();
+            }
+        }
     }
 }
