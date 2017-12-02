@@ -43,4 +43,12 @@ public class Entity : MonoBehaviour {
 			_rb.velocity = _velocity;
 		}
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+    }
 }
