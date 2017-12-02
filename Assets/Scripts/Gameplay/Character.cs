@@ -43,6 +43,7 @@ public class Character : Entity {
             Vector3.zero,
         };
         var line = new VectorLine("Laser1", points, 3.0f, LineType.Continuous, Joins.Weld);
+        line.SetColor(new Color32(10, 255, 10, 255));
         _laserLines.Add(line);
     }
 
