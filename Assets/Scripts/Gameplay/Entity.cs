@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 	protected StrategyGame _game;
-	private Rigidbody2D _rb;
+	protected Rigidbody2D _rb;
 
 	protected Vector2 _velocity;
 	public float DeadZone = 0.3f;

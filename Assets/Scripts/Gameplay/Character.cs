@@ -19,7 +19,7 @@ public class Character : Entity {
 
     private string _hAxis, _vAxis;
 
-    public Vector2 Destination;
+    public GameObject DroneMarker;
     private bool isMoving;
 
     private List<VectorLine> _laserLines = new List<VectorLine>();
@@ -28,11 +28,14 @@ public class Character : Entity {
 
     protected new void Start()
     {
+        base.Start();
+
         _laserLayerMask = LayerMask.GetMask("Geometry", "Enemies");
 
-        Destination = transform.position;
-
-        base.Start();
+        DroneMarker = new GameObject();
+        
+        DroneMarker.transform.position = transform.position;
+        DroneMarker.transform.rotation = _game.Drone.transform.rotation;
 
         _hAxis = Role == CharacterRole.Main ? "CharacterHorizontal" : "DroneHorizontal";
         _vAxis = Role == CharacterRole.Main ? "CharacterVertical" : "DroneVertical";
@@ -53,7 +56,7 @@ public class Character : Entity {
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 point = ray.IntersectXY();
-            Destination = point;
+            DroneMarker.transform.position = point;
         }
 
         {
@@ -70,18 +73,20 @@ public class Character : Entity {
                 if (Mathf.Abs(direction.y) < DeadZone) direction.y = 0.0f;
                 else direction.y = Mathf.Sign(direction.y);
                 _velocity += direction * Acceleration * Time.deltaTime;
+
+                base.Update();
             }
             else
             {
-                var position = transform.position;
-                var distance = Destination - (Vector2)position;
+                GetComponent<AIPath>().target = DroneMarker.transform;
 
-                var acceleration = Acceleration * distance;
-                var damping = _velocity * 2.0f * Mathf.Sqrt(Acceleration);
-                _velocity += (acceleration - damping) * Time.deltaTime;
+                //var position = transform.position;
+                //var distance = Destination - (Vector2)position;
+
+                //var acceleration = Acceleration * distance;
+                //var damping = _velocity * 2.0f * Mathf.Sqrt(Acceleration);
+                //_velocity += (acceleration - damping) * Time.deltaTime;
             }
-
-            base.Update();
         }
 
         if (Input.GetButton("Fire1"))
@@ -110,7 +115,7 @@ public class Character : Entity {
                 var enemy = hit.collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.DoLaserHit(50.0f * Time.deltaTime);
+                    enemy.DoLaserHit(100.0f * Time.deltaTime);
                     break;
                 }
 
@@ -126,4 +131,12 @@ public class Character : Entity {
             _laserLines[0].active = false;
         }
 	}
+
+    new void FixedUpdate()
+    {
+        if (Role != CharacterRole.Drone && _rb != null)
+        {
+            _rb.velocity = _velocity;
+        }
+    }
 }

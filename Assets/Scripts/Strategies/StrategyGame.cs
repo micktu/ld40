@@ -55,14 +55,14 @@ public class StrategyGame : StrategyBase
 
     public void InitLevel()
     {
+        Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
+        Drone.gameObject.SetActive(false);
+        Drone.Role = CharacterRole.Drone;
+
         Character = Instantiate(CharacterPrefab, Vector3.zero, Quaternion.identity);
         Character.gameObject.SetActive(false);
         Character.Role = CharacterRole.Main;
         //Character.DebugText = DebugText;
-
-        Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
-        Drone.gameObject.SetActive(false);
-        Drone.Role = CharacterRole.Drone;
 
         ExitPad = Level.transform.Find("Exit").gameObject;
     }
