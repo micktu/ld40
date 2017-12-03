@@ -9,14 +9,18 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-	    _game = GameManager.Instance.ActiveStrategy as StrategyGame;
-        offset = transform.position - _game.Character.transform.position;
+        //offset = transform.position - _game.Character.transform.position;
     }
 
     void LateUpdate()
     {
-        if (_game.Character != null) {
-            transform.position = _game.Character.transform.position + offset;
+        var game = GameManager.Instance.ActiveStrategy as StrategyGame;
+
+        if (game != null)
+        {
+            var position = game.Character.transform.position;
+            position.z = -10.0f;
+            transform.position = position;
         }
     }
 }
