@@ -154,6 +154,8 @@ MonoBehaviour:
   MaxSpeed: 3
   MaxEnergy: 100
   EnergyDrain: 20
+  SpriteFront: {fileID: 21300000, guid: ae129c3ba3dc97e439b3815d22c628bc, type: 3}
+  SpriteLeft: {fileID: 21300000, guid: 681dc87dd34eb9149bbd7fed725c04da, type: 3}
   DebugText: {fileID: 0}
   Role: 1
   Destination: {x: 0, y: 0, z: 0}
@@ -191,7 +193,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4b1154d608ad3e04e92c9276c155cb48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae129c3ba3dc97e439b3815d22c628bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -19,6 +19,9 @@ public class Entity : MonoBehaviour {
     private float _lastEnergy;
     private float _currentEnergy;
 
+    public Sprite SpriteFront, SpriteLeft;
+    private SpriteRenderer _renderer;
+
     public float CurrentEnergy
     {
         get { return _currentEnergy; }
@@ -30,6 +33,12 @@ public class Entity : MonoBehaviour {
     protected void Start () {
 	    _game = GameManager.Instance.ActiveStrategy as StrategyGame;
 	    _rb = GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<SpriteRenderer>();
+
+        if (_renderer == null)
+        {
+            _renderer = transform.GetComponentInChildren<SpriteRenderer>();
+        }
     }
 
     // Update is called once per frame
@@ -48,8 +57,25 @@ public class Entity : MonoBehaviour {
 	        {
 	            _velocity = Vector2.zero;
 	        }
+	        else
+	        {
+	            var scale = _renderer.transform.localScale;
 
-	        if (_velocity.sqrMagnitude > MaxSpeed * MaxSpeed)
+	            if (SpriteLeft != null && Mathf.Abs(_velocity.x) >= Mathf.Abs(_velocity.y))
+	            {
+	                _renderer.sprite = SpriteLeft;
+	                scale.x = -Mathf.Sign(_velocity.x) * Mathf.Abs(scale.x);
+                }
+                else if (SpriteFront != null)
+	            {
+	                _renderer.sprite = SpriteFront;
+	                scale.y = -Mathf.Sign(_velocity.y) * Mathf.Abs(scale.y);
+                }
+
+                _renderer.transform.localScale = scale;
+            }
+
+            if (_velocity.sqrMagnitude > MaxSpeed * MaxSpeed)
 	        {
 	            _velocity = Vector2.ClampMagnitude(_velocity, MaxSpeed);
 	        }
