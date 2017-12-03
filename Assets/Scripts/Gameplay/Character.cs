@@ -115,7 +115,7 @@ public class Character : Entity {
                 var enemy = hit.collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.DoLaserHit(100.0f * Time.deltaTime);
+                    enemy.DoLaserHit(_game.LaserDamage * Time.deltaTime);
                     float ed = _game.EnergyDrain * Time.deltaTime;
                     if (_game.Energy >= ed)
                     {

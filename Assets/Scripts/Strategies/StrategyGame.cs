@@ -45,14 +45,18 @@ public class StrategyGame : StrategyBase
     public float EnergyGain = 1f;
     public float EnergySpent = 0f;
     public float EnergyNeedForFire = 5f;
+    public float EnergyPerTerminal = 10f;
+    public float EnergyRegenStep = 1.0f;
     private Coroutine _spawnCoroutine;
+
+    public float LaserDamage = 100f;
 
     public IEnumerator RegenEnergy()
     {
         while (true)
         {
-            Energy += EnergyGain * (1 + CoinsIncome * 10);
-            yield return new WaitForSeconds(1.0f);
+            Energy += EnergyGain * (1 + CoinsIncome * EnergyPerTerminal);
+            yield return new WaitForSeconds(EnergyRegenStep);
         }
     }
 
@@ -145,7 +149,7 @@ public class StrategyGame : StrategyBase
     {
         Coins = 0;
         CoinsIncome = 0.0f;
-        Energy = 0f;
+        Energy = 30f;
 
         if (_spawnCoroutine != null)
         {
