@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour {
         while (true)
         {
             _game.SpawnEnemy(transform.position);
+            yield return new WaitForSeconds(10.0f);
             if (_game.EnergySpent < 50)
             {
                 yield return new WaitForSeconds(3.0f);
