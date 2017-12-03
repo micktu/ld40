@@ -35,7 +35,9 @@ public class StrategyGame : StrategyBase
     }
 
     public int FinalCost = 300;
+    public int FinalEnergyCost = 200;
     public Text FinalText;
+    public Text Goals;
 
     // public float HitPointsMax = 100f;
     // public float HitPoints = 100f;
@@ -98,6 +100,8 @@ public class StrategyGame : StrategyBase
        
         ContainerHUD.SetActive(true);
         _spawnCoroutine = StartCoroutine(RegenEnergy());
+        Goals.text = String.Format("You need: {0} coins and {1} energy spent", FinalCost, FinalEnergyCost);
+
     }
 
     protected override void OnLeave()
