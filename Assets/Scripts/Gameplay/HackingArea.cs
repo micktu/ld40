@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class HackingArea : MonoBehaviour {
 
+    public Sprite NormalSprite;
+    public Sprite ActiveSprite;
+    public Sprite BrokenSprite;
+
 	private StrategyGame _game;
 	private bool _hackable = true;
 	private bool _isHacking = false;
@@ -30,7 +34,7 @@ public class HackingArea : MonoBehaviour {
             _game.Coins += terminalPrice;
             yield return new WaitForSeconds(1.0f);
         }
-        terminal.GetComponent<SpriteRenderer>().color = new Color(55, 55, 55);
+        terminal.GetComponent<SpriteRenderer>().sprite = BrokenSprite;
         _stopHacking();
 	}
 
@@ -45,7 +49,7 @@ public class HackingArea : MonoBehaviour {
         if (_hackable) {
             Debug.Log("Start hacking");
             _isHacking = true;
-            terminal.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            terminal.GetComponent<SpriteRenderer>().sprite = ActiveSprite;
             _spawnCoroutine = StartCoroutine(EarnCoins());
         }
     }
@@ -56,7 +60,13 @@ public class HackingArea : MonoBehaviour {
         {
             return;
         }
-        terminal.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        if (_hackable)
+        {
+            terminal.GetComponent<SpriteRenderer>().sprite = NormalSprite;
+        }
+        else {
+            terminal.GetComponent<SpriteRenderer>().sprite = BrokenSprite;
+        }
         _stopHacking();
     }
 

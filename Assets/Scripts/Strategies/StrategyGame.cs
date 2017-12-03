@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+public enum AlarmLevel {
+    Green,
+    Orange,
+    Red,
+    Black
+}
+
 public class StrategyGame : StrategyBase
 {
 	private GameManager _gameManager;
@@ -25,6 +32,7 @@ public class StrategyGame : StrategyBase
     public GameObject Level;
 
     public float Coins = 0f;
+    public int KillCount = 0;
 
     private int _lastEnemyPositionIndex;
 
@@ -55,6 +63,7 @@ public class StrategyGame : StrategyBase
     private Coroutine _spawnCoroutine;
 
     public float LaserDamage = 100f;
+    public AlarmLevel Alarm;
 
     public IEnumerator RegenEnergy()
     {
@@ -97,6 +106,7 @@ public class StrategyGame : StrategyBase
 
     protected override void OnEnter(StrategyType lastStrategy)
     {
+        Alarm = AlarmLevel.Green;
         Level.gameObject.SetActive(true);
         PlayerInput.enabled = true;
         Character.gameObject.SetActive(true);
@@ -136,10 +146,11 @@ public class StrategyGame : StrategyBase
         MusicSource.Pause();
     }
 
-    public void SpawnEnemy(Vector3 position)
+    public void SpawnEnemy(Vector3 position, EnemyType enemyType)
     {
-            var enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
-            _enemies.Add(enemy);
+        var enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
+        enemy.Type = enemyType;
+        _enemies.Add(enemy);
     }
 
     void Update()
@@ -150,7 +161,28 @@ public class StrategyGame : StrategyBase
             return;
         }
         Energy -= EnergyDamage * Time.deltaTime;
-        CoinsText.text = String.Format("Coins: {0}\nEnergy: {1}\nEnergy spent: {2}", Coins, Energy, EnergySpent);
+        if (Alarm == AlarmLevel.Green && (Coins != 0 || KillCount >= 2)) {
+            Alarm = AlarmLevel.Orange;
+        }
+        String AlarmColor = "";
+        switch (Alarm)
+        {
+            case AlarmLevel.Green:
+                AlarmColor = "Green";
+                break;
+            case AlarmLevel.Orange:
+                AlarmColor = "Orange";
+                break;
+            case AlarmLevel.Red:
+                AlarmColor = "Red";
+                break;
+            case AlarmLevel.Black:
+                AlarmColor = "Black";
+                break;
+            default:
+                break;
+        }
+        CoinsText.text = String.Format("Coins: {0}\nEnergy: {1}\nEnergy spent: {2}\nAlarm: {3}", Coins, Energy, EnergySpent, AlarmColor);
         if (Coins >= FinalCost && EnergySpent >= FinalEnergyCost) {
             FinalText.gameObject.SetActive(true);
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);

@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeadZone: 0.3
-  Acceleration: 50
+  Acceleration: 40
   Drag: 30
   StopThreshold: 0.1
-  MaxSpeed: 6
+  MaxSpeed: 4
   MaxEnergy: 100
   EnergyDrain: 20
   SpriteFront: {fileID: 0}

@@ -6,6 +6,7 @@ using Pathfinding;
 public enum EnemyType
 {
     Shocker,
+    Blaster,
 }
 
 public class Enemy : Entity
@@ -48,6 +49,7 @@ public class Enemy : Entity
         Debug.Log(string.Format("Max, Current Energy: {0}", CurrentEnergy));
         _game.Enemies.Remove(this);
         Destroy(gameObject);
+        _game.KillCount++;
     }
 
     public override void DoLaserHit(float energy)
