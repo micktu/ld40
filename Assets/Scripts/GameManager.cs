@@ -99,7 +99,6 @@ public class GameManager : MonoBehaviour
 
     public void EnterGame(string levelName)
     {
-        Debug.Log("asd");
         SceneManager.LoadScene(levelName);
     }
 

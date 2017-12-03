@@ -34,31 +34,28 @@ public class Entity : MonoBehaviour {
 
     // Update is called once per frame
     protected void Update () {
-		if (_rb != null)
-		{
-			_velocity -= _velocity.normalized * Drag * Time.deltaTime;
-
-			if (_velocity.sqrMagnitude < StopThreshold * StopThreshold)
-			{
-				_velocity = Vector2.zero;
-			}
-
-			if (_velocity.sqrMagnitude > MaxSpeed * MaxSpeed)
-			{
-				_velocity = Vector2.ClampMagnitude(_velocity, MaxSpeed);
-			}
-		}
-
         _lastEnergy = CurrentEnergy;
         AddEnergy(-EnergyDrain * Time.deltaTime);
     }
 
 	void FixedUpdate()
 	{
-		if (_rb != null)
-		{
-			_rb.velocity = _velocity;
-		}
+	    if (_rb != null)
+	    {
+	        _velocity -= _velocity.normalized * Drag * Time.deltaTime;
+
+	        if (_velocity.sqrMagnitude < StopThreshold * StopThreshold)
+	        {
+	            _velocity = Vector2.zero;
+	        }
+
+	        if (_velocity.sqrMagnitude > MaxSpeed * MaxSpeed)
+	        {
+	            _velocity = Vector2.ClampMagnitude(_velocity, MaxSpeed);
+	        }
+
+            _rb.velocity = _velocity;
+	    }
 	}
 
     void OnTriggerEnter2D(Collider2D other)
