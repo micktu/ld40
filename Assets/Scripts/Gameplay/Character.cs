@@ -89,7 +89,7 @@ public class Character : Entity {
             }
         }
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && _game.Energy >=_game.EnergyNeedForFire)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 point = ray.IntersectXY();
@@ -120,6 +120,7 @@ public class Character : Entity {
                     if (_game.Energy >= ed)
                     {
                         _game.Energy -= ed;
+                        _game.EnergySpent += ed;
                     }
                     else {
                         _game.Energy = 0;

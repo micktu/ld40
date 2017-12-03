@@ -37,19 +37,21 @@ public class StrategyGame : StrategyBase
     public int FinalCost = 300;
     public Text FinalText;
 
-    public float HitPointsMax = 100f;
-    public float HitPoints = 100f;
+    // public float HitPointsMax = 100f;
+    // public float HitPoints = 100f;
     public float EnergyMax = 100f;
     public float EnergyDrain = 10f;
-    public float Energy = 10f;
-    public float EnergyGain = 10f;
+    public float Energy = 30f;
+    public float EnergyGain = 1f;
+    public float EnergySpent = 0f;
+    public float EnergyNeedForFire = 5f;
     private Coroutine _spawnCoroutine;
 
     public IEnumerator RegenEnergy()
     {
         while (true)
         {
-            Energy += EnergyGain;
+            Energy += EnergyGain * (1 + CoinsIncome * 10);
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -129,7 +131,7 @@ public class StrategyGame : StrategyBase
             return;
         }
         Coins += (int) CoinsIncome;
-        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}\nEnergy: {2}", Coins, CoinsIncome, Energy);
+        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}\nEnergy: {2}\nEnergy spent: {3}", Coins, CoinsIncome, Energy, EnergySpent);
         if (Coins >= FinalCost) {
             FinalText.gameObject.SetActive(true);
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
