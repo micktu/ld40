@@ -23,7 +23,6 @@ public class StrategyGame : StrategyBase
     public GameObject Level;
 
     public float Coins = 0f;
-    public float CoinsIncome = 0f;
 
     private int _lastEnemyPositionIndex;
 
@@ -42,14 +41,14 @@ public class StrategyGame : StrategyBase
     // public float HitPointsMax = 100f;
     // public float HitPoints = 100f;
     public float EnergyDamage = 0f;
-    public float EnergyMax = 100f;
+    public float EnergyMax = 300f;
     public float EnergyDrain = 10f;
     public float EnergyStart = 30f;
     public float Energy = 0f;
     public float EnergyGain = 1f;
     public float EnergySpent = 0f;
     public float EnergyNeedForFire = 5f;
-    public float EnergyPerTerminal = 10f;
+    public float EnergyWhenHacking = 2f;
     public float EnergyRegenStep = 1.0f;
     private Coroutine _spawnCoroutine;
 
@@ -59,7 +58,8 @@ public class StrategyGame : StrategyBase
     {
         while (true)
         {
-            Energy += EnergyGain * (1 + CoinsIncome * EnergyPerTerminal);
+            Energy += EnergyGain * (1 + EnergyWhenHacking);
+            //Debug.Log("Energy regened " + Energy);
             yield return new WaitForSeconds(EnergyRegenStep);
         }
     }
@@ -139,27 +139,24 @@ public class StrategyGame : StrategyBase
     void Update()
     {
         if (Energy >= EnergyMax || Energy < 0) {
-            LeaveLevel();
+            Debug.Log(String.Format("Level ended, energy: {0}", Energy));
+            LeaveLevel(false);
             return;
         }
-        Coins += CoinsIncome * Time.deltaTime;
         Energy -= EnergyDamage * Time.deltaTime;
-        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}\nEnergy: {2}\nEnergy spent: {3}", Coins, CoinsIncome, Energy, EnergySpent);
-        if (Coins >= FinalCost) {
+        CoinsText.text = String.Format("Coins: {0}\nEnergy: {1}\nEnergy spent: {2}", Coins, Energy, EnergySpent);
+        if (Coins >= FinalCost && EnergySpent >= FinalEnergyCost) {
             FinalText.gameObject.SetActive(true);
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             if (PlayerOnExit) {
-                LeaveLevel();
+                Debug.Log(String.Format("Level ended, you won"));
+                LeaveLevel(true);
             }
         }
     }
 
-    void LeaveLevel()
+    void LeaveLevel(bool win)
     {
-        Coins = 0;
-        CoinsIncome = 0.0f;
-        Energy = 30f;
-
         if (_spawnCoroutine != null)
         {
             StopCoroutine(_spawnCoroutine);
@@ -187,8 +184,16 @@ public class StrategyGame : StrategyBase
             Destroy(spawner.gameObject);
         }
 
+        Coins = 0;
+        Energy = 30f;
 
-        _gameManager.EnterMainMenu();
+        if (win)
+        {
+            _gameManager.EnterWinScreen();
+        }
+        else {
+            _gameManager.EnterLooseScreen();
+        }
 
         Destroy(Level);
     }

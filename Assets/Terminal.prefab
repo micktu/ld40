@@ -134,6 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terminal: {fileID: 1937873571885158}
+  terminalPrice: 5
+  totalCoins: 100
 --- !u!212 &212237276207980378
 SpriteRenderer:
   m_ObjectHideFlags: 1
