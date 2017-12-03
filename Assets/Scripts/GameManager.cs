@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public GameObject Level;
     public ResultType Result;
 
+    public List<AudioClip> Blasts = new List<AudioClip>();
+
+    public List<AudioClip> Heats = new List<AudioClip>();
+
+
     public AudioSource MusicSource;
     
     public static GameManager Instance

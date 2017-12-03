@@ -13,6 +13,14 @@ public class Enemy : Entity
     public EnemyType Type;
     public float Damage = 5f;
 
+    private AudioSource _as;
+
+    private bool _isDead;
+
+    public bool _wasHit;
+
+    public static int LastBlastIndex, LastShotIndex;
+
 	new void Start ()
 	{
 	    base.Start();
@@ -20,6 +28,8 @@ public class Enemy : Entity
 
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
+
+	    _as = GetComponent<AudioSource>();
 	}
 
     new void Update ()
@@ -31,6 +41,11 @@ public class Enemy : Entity
         transform.localScale = Vector3.one * (0.5f + CurrentEnergy / MaxEnergy);
 
         //base.Update();
+
+	    if (_isDead && !_as.isPlaying)
+	    {
+	        Destroy(gameObject);
+	    }
 	}
 
     new void FixedUpdate()
@@ -38,27 +53,68 @@ public class Enemy : Entity
         
     }
 
+    void LateUpdate()
+    {
+        if (!_isDead && !_wasHit && _as.isPlaying)
+        {
+            _as.Stop();
+        }
+        _wasHit = false;
+    }
+
     protected override void OnEnergyDepleted()
     {
+        if (_isDead) return;
         Debug.Log(string.Format("Depleted, Current Energy: {0}", CurrentEnergy));
     }
 
     protected override void OnMaxEnergyReached()
     {
+        if (_isDead) return;
+
         Debug.Log(string.Format("Max, Current Energy: {0}", CurrentEnergy));
         _game.Enemies.Remove(this);
-        Destroy(gameObject);
+        transform.localScale = Vector3.zero;
+        _isDead = true;
+        GetComponent<AIPath>().target = null;
+        PlayBlast();
     }
 
     public override void DoLaserHit(float energy)
     {
+        if (_isDead) return;
+        
         AddEnergy(energy);
+        _wasHit = true;
+        PlayHeatsound();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
     }
+
     void OnTriggerExit2D(Collider2D other)
     {
+    }
+
+    public void PlayBlast()
+    {
+        var index = (LastShotIndex + 1 + Random.Range(0, 4)) % 4;
+        LastShotIndex = index;
+        Debug.Log(index);
+        _as.clip = GameManager.Instance.Blasts[Random.Range(0, 4)];
+        _as.Play();
+    }
+
+    public void PlayHeatsound()
+    {
+        if (_as.isPlaying) return;
+
+        var game = GameManager.Instance.ActiveStrategy as StrategyGame;
+        var period = MaxEnergy / game.LaserDamage;
+
+        _as.clip = GameManager.Instance.Heats[Random.Range(0, 2)];
+        _as.time = _as.clip.length - period - 1.0f;
+        _as.Play();
     }
 }
