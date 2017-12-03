@@ -122,7 +122,7 @@ public class Character : Entity {
             }
         }
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && _game.Energy >=_game.EnergyNeedForFire)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 point = ray.IntersectXY();
@@ -148,7 +148,16 @@ public class Character : Entity {
                 var enemy = hit.collider.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.DoLaserHit(100.0f * Time.deltaTime);
+                    enemy.DoLaserHit(_game.LaserDamage * Time.deltaTime);
+                    float ed = _game.EnergyDrain * Time.deltaTime;
+                    if (_game.Energy >= ed)
+                    {
+                        _game.Energy -= ed;
+                        _game.EnergySpent += ed;
+                    }
+                    else {
+                        _game.Energy = 0;
+                    }
                     break;
                 }
 

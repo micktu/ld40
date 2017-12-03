@@ -35,8 +35,32 @@ public class StrategyGame : StrategyBase
     }
 
     public int FinalCost = 300;
+    public int FinalEnergyCost = 200;
     public Text FinalText;
+    public Text Goals;
 
+    // public float HitPointsMax = 100f;
+    // public float HitPoints = 100f;
+    public float EnergyMax = 100f;
+    public float EnergyDrain = 10f;
+    public float Energy = 30f;
+    public float EnergyGain = 1f;
+    public float EnergySpent = 0f;
+    public float EnergyNeedForFire = 5f;
+    public float EnergyPerTerminal = 10f;
+    public float EnergyRegenStep = 1.0f;
+    private Coroutine _spawnCoroutine;
+
+    public float LaserDamage = 100f;
+
+    public IEnumerator RegenEnergy()
+    {
+        while (true)
+        {
+            Energy += EnergyGain * (1 + CoinsIncome * EnergyPerTerminal);
+            yield return new WaitForSeconds(EnergyRegenStep);
+        }
+    }
 
     protected override void OnInit()
     {
@@ -75,10 +99,18 @@ public class StrategyGame : StrategyBase
         Drone.gameObject.SetActive(true);
        
         ContainerHUD.SetActive(true);
+        _spawnCoroutine = StartCoroutine(RegenEnergy());
+        Goals.text = String.Format("You need: {0} coins and {1} energy spent", FinalCost, FinalEnergyCost);
+
     }
 
     protected override void OnLeave()
     {
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+        }
+
         if (Level != null)
         { 
             Level.gameObject.SetActive(false);
@@ -102,8 +134,12 @@ public class StrategyGame : StrategyBase
 
     void Update()
     {
+        if (Energy >= EnergyMax) {
+            LeaveLevel();
+            return;
+        }
         Coins += (int) CoinsIncome;
-        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}", Coins, CoinsIncome);
+        CoinsText.text = String.Format("Coins: {0}\nIncome: {1}\nEnergy: {2}\nEnergy spent: {3}", Coins, CoinsIncome, Energy, EnergySpent);
         if (Coins >= FinalCost) {
             FinalText.gameObject.SetActive(true);
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
@@ -117,6 +153,12 @@ public class StrategyGame : StrategyBase
     {
         Coins = 0;
         CoinsIncome = 0.0f;
+        Energy = 30f;
+
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+        }
 
         if (Character != null)
         {
