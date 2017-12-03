@@ -133,6 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301107cd4df85b648a05199043c63e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NormalSprite: {fileID: 21300000, guid: 7125a8685022291429d033312c6ef180, type: 3}
+  ActiveSprite: {fileID: 21300000, guid: ab8859d9b08a2e449874f2a1db85a816, type: 3}
+  BrokenSprite: {fileID: 21300000, guid: 8bd2dd0aa06406a449c524eaaf7b3318, type: 3}
   terminal: {fileID: 1937873571885158}
   terminalPrice: 5
   totalCoins: 100
