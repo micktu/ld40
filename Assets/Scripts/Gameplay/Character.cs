@@ -19,6 +19,12 @@ public class Character : Entity {
 
     public CharacterRole Role;
 
+    public Material LaserMaterial;
+
+    public GameObject LaserPrefab;
+
+    private GameObject _laserParticles;
+
     private string _hAxis, _vAxis;
 
     public Vector3 Destination;
@@ -51,11 +57,16 @@ public class Character : Entity {
             Vector3.zero,
             Vector3.zero,
         };
-        var line = new VectorLine("Laser1", points, 3.0f, LineType.Continuous, Joins.Weld);
-        line.SetColor(new Color32(10, 10, 200, 255));
+        var line = new VectorLine("Laser1", points, 5.0f, LineType.Continuous, Joins.Weld);
+        line.material = LaserMaterial;
+        line.useViewportCoords = true;
+        //line.SetColor(new Color32(10, 10, 200, 255));
         _laserLines.Add(line);
 
-        _seeker = GetComponent<Seeker>();
+        _laserParticles = Instantiate(LaserPrefab);
+        _laserParticles.SetActive(false);
+
+    _seeker = GetComponent<Seeker>();
 
         if (_seeker)
         {
@@ -129,11 +140,13 @@ public class Character : Entity {
 
             var position = transform.position;
 
+            var direction = (point - position).normalized;
+            position += direction * 0.32f;
+
             var points = _laserLines[0].points3;
             points.Clear();
             points.Add(position);
-            var direction = (point - position).normalized;
-
+            
             for (var i = 0; i < 2; i++)
             {
                 var hit = Physics2D.Raycast(position, direction, 20.0f, _laserLayerMask);
@@ -155,7 +168,8 @@ public class Character : Entity {
                         _game.Energy -= ed;
                         _game.EnergySpent += ed;
                     }
-                    else {
+                    else
+                    {
                         _game.Energy = 0;
                     }
                     break;
@@ -163,7 +177,20 @@ public class Character : Entity {
 
                 direction = Vector2.Reflect(direction, hit.normal);
                 position = (Vector3)hit.point + direction * 0.05f;
+
             }
+
+            //var laserPosition = position;
+            //laserPosition.z -= 5.0f;
+            //_laserParticles.transform.position = laserPosition;
+            //var rotDir = new Vector3(-direction.y, direction.x);
+            //_laserParticles.transform.rotation =
+            //    Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            //var scale = Vector3.one * 0.08f;
+            //scale.x = Vector3.Distance(point, position) * scale.x;
+            //_laserParticles.transform.localScale = scale;
+
+            //_laserParticles.SetActive(true);
 
             _laserLines[0].active = true;
             _laserLines[0].Draw();
@@ -171,6 +198,7 @@ public class Character : Entity {
         else
         {
             _laserLines[0].active = false;
+            //_laserParticles.SetActive(false);
         }
     }
 
