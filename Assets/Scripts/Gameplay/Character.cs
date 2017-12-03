@@ -148,4 +148,20 @@ public class Character : Entity {
             _rb.velocity = _velocity;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null && enemy.Type == EnemyType.Shocker) {
+            _game.EnergyDamage += enemy.Damage;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null && enemy.Type == EnemyType.Shocker) {
+            _game.EnergyDamage -= enemy.Damage;
+        }
+    }
 }

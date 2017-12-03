@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+public enum EnemyType
+{
+    Shocker,
+}
+
 public class Enemy : Entity
 {
+    public EnemyType Type;
+    public float Damage = 5f;
 
 	new void Start ()
 	{
 	    base.Start();
+        Type = EnemyType.Shocker;
 
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
@@ -45,5 +53,12 @@ public class Enemy : Entity
     public override void DoLaserHit(float energy)
     {
         AddEnergy(energy);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
     }
 }
