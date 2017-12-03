@@ -8,8 +8,10 @@ public class HackingArea : MonoBehaviour {
 	private bool _hackable = true;
 	private bool _isHacking = false;
     public GameObject terminal;
-    public float terminalPrice = 1f;
-    public int totalCoins = 100;
+    public float terminalPrice = 20f;
+    public float totalCoins = 100f;
+    private Coroutine _spawnCoroutine;
+    private Character _hacker;
 
 	// Use this for initialization
 	void Start () {
@@ -17,48 +19,63 @@ public class HackingArea : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (_isHacking) {
-            if (totalCoins > 0)
-            {
-                totalCoins--;
+	IEnumerator EarnCoins () {
+        while (totalCoins > 0 && _isHacking)
+        {
+            if (totalCoins >= terminalPrice) {
+                totalCoins -= terminalPrice;
+            } else {
+                totalCoins = 0;
             }
-            if (totalCoins == 0 && _hackable) {
-                terminal.GetComponent<SpriteRenderer>().color = new Color(55, 55, 55);
-                stopHacking();
-            }
+            _game.Coins += terminalPrice;
+            yield return new WaitForSeconds(1.0f);
         }
+        terminal.GetComponent<SpriteRenderer>().color = new Color(55, 55, 55);
+        _stopHacking();
 	}
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Character>() == null)
+        _hacker = other.GetComponent<Character>();
+        if (_hacker == null)
         {
             return;
         }
 
         if (_hackable) {
-            terminal.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-            _game.CoinsIncome += terminalPrice;
+            Debug.Log("Start hacking");
             _isHacking = true;
+            terminal.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            _spawnCoroutine = StartCoroutine(EarnCoins());
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<Character>() == null)
+        if (_hacker != other.GetComponent<Character>())
         {
             return;
         }
         terminal.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-        stopHacking();
+        _stopHacking();
     }
 
-    void stopHacking() {
-        if (_hackable) {
-            _game.CoinsIncome -= terminalPrice;
-            _hackable = false;
+    void _stopHacking() {
+        if (_spawnCoroutine != null && _isHacking) {
+            Debug.Log("Stop hacking");
+            StopCoroutine(_spawnCoroutine);
             _isHacking = false;
+            _hacker = null;
+            if (totalCoins == 0) {
+                _hackable = false;
+            }
+        }
+    }
+
+    void OnDestroy() {
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
         }
     }
 }

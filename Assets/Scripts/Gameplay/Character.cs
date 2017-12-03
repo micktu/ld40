@@ -150,7 +150,7 @@ public class Character : Entity {
                 {
                     enemy.DoLaserHit(_game.LaserDamage * Time.deltaTime);
                     float ed = _game.EnergyDrain * Time.deltaTime;
-                    if (_game.Energy >= ed)
+                    if (_game.Energy >= ed && ed >= 0)
                     {
                         _game.Energy -= ed;
                         _game.EnergySpent += ed;
