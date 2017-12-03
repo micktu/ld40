@@ -57,7 +57,7 @@ public class Entity : MonoBehaviour {
 	        {
 	            _velocity = Vector2.zero;
 	        }
-	        else
+	        else if (_renderer != null)
 	        {
 	            var scale = _renderer.transform.localScale;
 
