@@ -27,12 +27,14 @@ public class StrategyGame : StrategyBase
 
     public Character CharacterPrefab, DronePrefab;
     public Enemy EnemyPrefab;
+    public Enemy EnemyShooterPrefab;
 
     public Character Character, Drone;
     public GameObject Level;
 
     public float Coins = 0f;
     public int KillCount = 0;
+    public int TerminalsCaptured = 0;
 
     private int _lastEnemyPositionIndex;
 
@@ -148,9 +150,15 @@ public class StrategyGame : StrategyBase
 
     public void SpawnEnemy(Vector3 position, EnemyType enemyType)
     {
-        var enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
-        enemy.Type = enemyType;
-        _enemies.Add(enemy);
+        if (enemyType == EnemyType.Shocker)
+        {
+            var enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
+            _enemies.Add(enemy);
+        }
+        else {
+            var enemy = Instantiate(EnemyShooterPrefab, position, Quaternion.identity);
+            _enemies.Add(enemy);
+        }
     }
 
     void Update()
@@ -161,8 +169,14 @@ public class StrategyGame : StrategyBase
             return;
         }
         Energy -= EnergyDamage * Time.deltaTime;
-        if (Alarm == AlarmLevel.Green && (Coins != 0 || KillCount >= 2)) {
+        if (Alarm == AlarmLevel.Green && (TerminalsCaptured > 0 || KillCount >= 2)) {
             Alarm = AlarmLevel.Orange;
+        } else 
+        if (Alarm == AlarmLevel.Orange && (TerminalsCaptured > 1)) {
+            Alarm = AlarmLevel.Red;
+        } else 
+        if (Alarm == AlarmLevel.Red && (TerminalsCaptured == 3)) {
+            Alarm = AlarmLevel.Black;
         }
         String AlarmColor = "";
         switch (Alarm)

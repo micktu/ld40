@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +18,22 @@ public class EnemySpawner : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (_game.Alarm == AlarmLevel.Green && _game.Enemies.Count < 6) {
+        int shockers = _game.Enemies.FindAll((x) => x.Type == EnemyType.Shocker).Count;
+        int blasters = _game.Enemies.FindAll((x) => x.Type == EnemyType.Blaster).Count;
+        if (_game.Alarm == AlarmLevel.Green && shockers < 6) {
             SpawnEnemy(EnemyType.Shocker);
         }
-        else 
-        if (_game.Alarm == AlarmLevel.Orange && _game.Enemies.Count < 12) {
+
+        if (_game.Alarm == AlarmLevel.Orange && shockers < 12) {
+            SpawnEnemy(EnemyType.Shocker);
+        }
+        if (_game.Alarm == AlarmLevel.Orange && blasters < 1) {
             SpawnEnemy(EnemyType.Blaster);
         }
+
+        /*
+        if (_game.Alarm == AlarmLevel.Red) {
+        }
+        */
     }
 }

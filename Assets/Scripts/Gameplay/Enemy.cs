@@ -26,8 +26,6 @@ public class Enemy : Entity
 	new void Start ()
 	{
 	    base.Start();
-        Type = EnemyType.Shocker;
-
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
 

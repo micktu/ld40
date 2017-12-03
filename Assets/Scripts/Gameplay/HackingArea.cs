@@ -78,6 +78,7 @@ public class HackingArea : MonoBehaviour {
             _hacker = null;
             if (totalCoins == 0) {
                 _hackable = false;
+                _game.TerminalsCaptured++;
             }
         }
     }
