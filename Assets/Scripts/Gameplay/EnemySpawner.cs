@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
 	    _game = GameManager.Instance.ActiveStrategy as StrategyGame;
-        //_spawnCoroutine = StartCoroutine(SpawnEnemy());
+        _spawnCoroutine = StartCoroutine(SpawnEnemy());
 	}
 
     public IEnumerator SpawnEnemy()
