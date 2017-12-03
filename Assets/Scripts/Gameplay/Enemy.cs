@@ -6,12 +6,16 @@ using Pathfinding;
 public class Enemy : Entity
 {
 
+    private Seeker _seeker;
+
 	new void Start ()
 	{
 	    base.Start();
 
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
+	    _seeker = GetComponent<Seeker>();
+	    _seeker.pathCallback += OnPathComplete;
 	}
 
     new void Update ()
@@ -45,5 +49,10 @@ public class Enemy : Entity
     public override void DoLaserHit(float energy)
     {
         AddEnergy(energy);
+    }
+
+    private void OnPathComplete(Path path)
+    {
+        
     }
 }
