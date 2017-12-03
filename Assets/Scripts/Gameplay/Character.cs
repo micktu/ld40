@@ -204,4 +204,20 @@ public class Character : Entity {
         _interpolator.MoveToLocallyClosestPoint((position + _path.originalStartPoint) * 0.5f);
         _interpolator.MoveToLocallyClosestPoint(position);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null && enemy.Type == EnemyType.Shocker) {
+            _game.EnergyDamage += enemy.Damage;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null && enemy.Type == EnemyType.Shocker) {
+            _game.EnergyDamage -= enemy.Damage;
+        }
+    }
 }

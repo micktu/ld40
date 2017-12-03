@@ -646,7 +646,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1459578583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.000013, y: -120.7, z: -1}
+  m_LocalPosition: {x: 20.000013, y: -140.7, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979225894}
@@ -654,7 +654,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20.000013, y: -120.7}
+  m_AnchoredPosition: {x: 20.000013, y: -140.7}
   m_SizeDelta: {x: 160, y: 70}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1571844496
@@ -841,8 +841,10 @@ MonoBehaviour:
   FinalEnergyCost: 200
   FinalText: {fileID: 1459578584}
   Goals: {fileID: 1249119816}
+  EnergyDamage: 0
   EnergyMax: 100
   EnergyDrain: 10
+  EnergyStart: 30
   Energy: 30
   EnergyGain: 1
   EnergySpent: 0

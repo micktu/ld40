@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+public enum EnemyType
+{
+    Shocker,
+}
+
 public class Enemy : Entity
 {
-
-    private Seeker _seeker;
+    public EnemyType Type;
+    public float Damage = 5f;
 
 	new void Start ()
 	{
 	    base.Start();
+        Type = EnemyType.Shocker;
 
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
-	    _seeker = GetComponent<Seeker>();
-	    _seeker.pathCallback += OnPathComplete;
 	}
 
     new void Update ()
@@ -51,8 +55,10 @@ public class Enemy : Entity
         AddEnergy(energy);
     }
 
-    private void OnPathComplete(Path path)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
     }
 }

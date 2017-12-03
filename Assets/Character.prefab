@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114861672582602638}
   - component: {fileID: 58007070521459492}
   - component: {fileID: 50704906476738642}
+  - component: {fileID: 58028355481437856}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -120,6 +121,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!58 &58028355481437856
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027973932227772}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.7
 --- !u!114 &114861672582602638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,4 +156,4 @@ MonoBehaviour:
   EnergyDrain: 20
   DebugText: {fileID: 0}
   Role: 0
-  Destination: {x: 0, y: 0}
+  DroneMarker: {fileID: 0}

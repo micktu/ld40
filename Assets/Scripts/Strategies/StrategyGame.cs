@@ -22,7 +22,7 @@ public class StrategyGame : StrategyBase
     public Character Character, Drone;
     public GameObject Level;
 
-    public int Coins = 0;
+    public float Coins = 0f;
     public float CoinsIncome = 0f;
 
     private int _lastEnemyPositionIndex;
@@ -41,9 +41,11 @@ public class StrategyGame : StrategyBase
 
     // public float HitPointsMax = 100f;
     // public float HitPoints = 100f;
+    public float EnergyDamage = 0f;
     public float EnergyMax = 100f;
     public float EnergyDrain = 10f;
-    public float Energy = 30f;
+    public float EnergyStart = 30f;
+    public float Energy = 0f;
     public float EnergyGain = 1f;
     public float EnergySpent = 0f;
     public float EnergyNeedForFire = 5f;
@@ -102,6 +104,8 @@ public class StrategyGame : StrategyBase
         _spawnCoroutine = StartCoroutine(RegenEnergy());
         Goals.text = String.Format("You need: {0} coins and {1} energy spent", FinalCost, FinalEnergyCost);
 
+        Energy = EnergyStart;
+
     }
 
     protected override void OnLeave()
@@ -134,11 +138,12 @@ public class StrategyGame : StrategyBase
 
     void Update()
     {
-        if (Energy >= EnergyMax) {
+        if (Energy >= EnergyMax || Energy < 0) {
             LeaveLevel();
             return;
         }
-        Coins += (int) CoinsIncome;
+        Coins += CoinsIncome * Time.deltaTime;
+        Energy -= EnergyDamage * Time.deltaTime;
         CoinsText.text = String.Format("Coins: {0}\nIncome: {1}\nEnergy: {2}\nEnergy spent: {3}", Coins, CoinsIncome, Energy, EnergySpent);
         if (Coins >= FinalCost) {
             FinalText.gameObject.SetActive(true);
