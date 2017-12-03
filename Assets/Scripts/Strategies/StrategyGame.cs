@@ -185,7 +185,6 @@ public class StrategyGame : StrategyBase
         CoinsText.text = String.Format("Coins: {0}\nEnergy: {1}\nEnergy spent: {2}\nAlarm: {3}", Coins, Energy, EnergySpent, AlarmColor);
         if (Coins >= FinalCost && EnergySpent >= FinalEnergyCost) {
             FinalText.gameObject.SetActive(true);
-            ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             if (PlayerOnExit) {
                 Debug.Log(String.Format("Level ended, you won"));
                 LeaveLevel(true);
