@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject Level;
     public ResultType Result;
 
+    public AudioSource MusicSource;
+    
     public static GameManager Instance
     {
         get { return _instance; }
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(FindObjectOfType<Canvas>().gameObject);
         DontDestroyOnLoad(FindObjectOfType<EventSystem>().gameObject);
+        DontDestroyOnLoad(MusicSource.gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

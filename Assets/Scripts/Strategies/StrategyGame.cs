@@ -14,6 +14,8 @@ public class StrategyGame : StrategyBase
     public GameObject ExitPad;
     public bool PlayerOnExit = false;
 
+    public AudioSource MusicSource;
+
     public Text CoinsText;
 
     public Character CharacterPrefab, DronePrefab;
@@ -106,6 +108,8 @@ public class StrategyGame : StrategyBase
 
         Energy = EnergyStart;
 
+        MusicSource = GameManager.Instance.MusicSource;
+        MusicSource.Play();
     }
 
     protected override void OnLeave()
@@ -128,6 +132,8 @@ public class StrategyGame : StrategyBase
 
         ContainerHUD.SetActive(false);
         PlayerInput.enabled = false;
+
+        MusicSource.Pause();
     }
 
     public void SpawnEnemy(Vector3 position)
@@ -196,5 +202,7 @@ public class StrategyGame : StrategyBase
         }
 
         Destroy(Level);
+
+        MusicSource.Stop();
     }
 }
