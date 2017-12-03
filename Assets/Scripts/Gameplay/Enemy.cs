@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EZCameraShake;
 using UnityEngine;
 using Pathfinding;
 
@@ -80,6 +81,11 @@ public class Enemy : Entity
         _isDead = true;
         GetComponent<AIPath>().target = null;
         PlayBlast();
+
+        var shaker = CameraShaker.Instance;
+        shaker.DefaultPosInfluence = new Vector3(0.25f, 0.25f, 0.0f);
+        shaker.DefaultRotInfluence = new Vector3(0.0f, 0.0f, 0.25f);
+        shaker.ShakeOnce(4.0f, 7.0f, 0.1f, 0.6f);
     }
 
     public override void DoLaserHit(float energy)

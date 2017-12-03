@@ -1,12 +1,18 @@
 fileFormatVersion: 2
-guid: bbdf93f7b624a4046be7ff6abba57f30
-timeCreated: 1512340328
+guid: 2ab8353b5ebd32545867da143199a814
+labels:
+- Shake
+- Camera
+- Follow
+- Animation
+- Effect
+timeCreated: 1512338597
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-  executionOrder: 20
+  executionOrder: 50
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

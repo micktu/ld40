@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EZCameraShake;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CameraController : MonoBehaviour
         //offset = transform.position - _game.Character.transform.position;
     }
 
-    void LateUpdate()
+    void Update()
     {
         var game = GameManager.Instance.ActiveStrategy as StrategyGame;
 

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(FindObjectOfType<Canvas>().gameObject);
         DontDestroyOnLoad(FindObjectOfType<EventSystem>().gameObject);
         DontDestroyOnLoad(MusicSource.gameObject);
-        DontDestroyOnLoad(Camera.main.gameObject);
+        DontDestroyOnLoad(Camera.main.transform.parent.gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

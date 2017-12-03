@@ -198,7 +198,7 @@ public class Character : Entity {
             _laserLines[0].active = true;
             _laserLines[0].Draw();
 
-            if (_as != null && _as[0].clip != GameManager.Instance.LaserStartClip)
+            if (_as.Length > 0 && _as[0].clip != GameManager.Instance.LaserStartClip)
             {
                 _as[0].clip = GameManager.Instance.LaserStartClip;
                 _as[0].Play();
