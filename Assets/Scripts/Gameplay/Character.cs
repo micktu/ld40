@@ -25,6 +25,8 @@ public class Character : Entity {
 
     private GameObject _laserParticles;
 
+    private AudioSource[] _as;
+
     private string _hAxis, _vAxis;
 
     public Vector3 Destination;
@@ -66,7 +68,9 @@ public class Character : Entity {
         _laserParticles = Instantiate(LaserPrefab);
         _laserParticles.SetActive(false);
 
-    _seeker = GetComponent<Seeker>();
+        _as = GetComponents<AudioSource>();
+
+        _seeker = GetComponent<Seeker>();
 
         if (_seeker)
         {
@@ -177,7 +181,6 @@ public class Character : Entity {
 
                 direction = Vector2.Reflect(direction, hit.normal);
                 position = (Vector3)hit.point + direction * 0.05f;
-
             }
 
             //var laserPosition = position;
@@ -194,9 +197,26 @@ public class Character : Entity {
 
             _laserLines[0].active = true;
             _laserLines[0].Draw();
+
+            if (_as != null && _as[0].clip != GameManager.Instance.LaserStartClip)
+            {
+                _as[0].clip = GameManager.Instance.LaserStartClip;
+                _as[0].Play();
+
+                _as[1].clip = GameManager.Instance.LaserShotClip;
+                _as[1].Play();
+            }
         }
         else
         {
+            if (_as.Length > 0 && _as[0].clip != GameManager.Instance.LaserEndClip)
+            {
+                _as[0].clip = GameManager.Instance.LaserEndClip;
+                _as[0].Play();
+
+                _as[1].Stop();
+            }
+
             _laserLines[0].active = false;
             //_laserParticles.SetActive(false);
         }

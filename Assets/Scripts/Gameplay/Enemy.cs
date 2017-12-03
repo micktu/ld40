@@ -14,7 +14,7 @@ public class Enemy : Entity
     public EnemyType Type;
     public float Damage = 5f;
 
-    private AudioSource _as;
+    private AudioSource[] _as;
 
     private bool _isDead;
 
@@ -30,7 +30,7 @@ public class Enemy : Entity
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
 
-	    _as = GetComponent<AudioSource>();
+	    _as = GetComponents<AudioSource>();
 	}
 
     new void Update ()
@@ -43,7 +43,7 @@ public class Enemy : Entity
 
         //base.Update();
 
-	    if (_isDead && !_as.isPlaying)
+	    if (_isDead && !_as[1].isPlaying)
 	    {
 	        Destroy(gameObject);
             _game.KillCount++;
@@ -57,9 +57,9 @@ public class Enemy : Entity
 
     void LateUpdate()
     {
-        if (!_isDead && !_wasHit && _as.isPlaying)
+        if (_isDead || !_wasHit && _as[0].isPlaying)
         {
-            _as.Stop();
+            _as[0].Stop();
         }
         _wasHit = false;
     }
@@ -104,19 +104,19 @@ public class Enemy : Entity
         var index = (LastShotIndex + 1 + Random.Range(0, 4)) % 4;
         LastShotIndex = index;
         Debug.Log(index);
-        _as.clip = GameManager.Instance.Blasts[Random.Range(0, 4)];
-        _as.Play();
+        _as[1].clip = GameManager.Instance.Blasts[Random.Range(0, 4)];
+        _as[1].Play();
     }
 
     public void PlayHeatsound()
     {
-        if (_as.isPlaying) return;
+        if (_as[0].isPlaying) return;
 
         var game = GameManager.Instance.ActiveStrategy as StrategyGame;
         var period = MaxEnergy / game.LaserDamage;
 
-        _as.clip = GameManager.Instance.Heats[Random.Range(0, 2)];
-        _as.time = _as.clip.length - period - 1.0f;
-        _as.Play();
+        _as[0].clip = GameManager.Instance.Heats[Random.Range(0, 2)];
+        _as[0].time = _as[0].clip.length - period - 1.0f;
+        _as[0].Play();
     }
 }

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public List<AudioClip> Heats = new List<AudioClip>();
 
+    public AudioClip LaserStartClip, LaserEndClip, LaserShotClip;
 
     public AudioSource MusicSource;
     
