@@ -6,6 +6,7 @@ using Pathfinding;
 public enum EnemyType
 {
     Shocker,
+    Blaster,
 }
 
 public class Enemy : Entity
@@ -45,6 +46,7 @@ public class Enemy : Entity
 	    if (_isDead && !_as.isPlaying)
 	    {
 	        Destroy(gameObject);
+            _game.KillCount++;
 	    }
 	}
 

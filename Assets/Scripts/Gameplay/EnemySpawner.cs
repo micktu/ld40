@@ -4,50 +4,25 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 	private StrategyGame _game;
-    private Coroutine _spawnCoroutine;
 
     // Use this for initialization
     void Start () {
 	    _game = GameManager.Instance.ActiveStrategy as StrategyGame;
-        _spawnCoroutine = StartCoroutine(SpawnEnemy());
 	}
 
-    public IEnumerator SpawnEnemy()
+    public void SpawnEnemy(EnemyType enemyType)
     {
-        while (true)
-        {
-            _game.SpawnEnemy(transform.position);
-            yield return new WaitForSeconds(10.0f);
-            if (_game.EnergySpent < 50)
-            {
-                yield return new WaitForSeconds(3.0f);
-            }
-            else
-            if (_game.EnergySpent < 100)
-            {
-                yield return new WaitForSeconds(2.0f);
-            }
-            else
-            if (_game.EnergySpent < 200)
-            {
-                yield return new WaitForSeconds(1.0f);
-            }
-            else
-            if (_game.EnergySpent < 250)
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
-        }
+        _game.SpawnEnemy(transform.position, enemyType);
     }
 
-    void OnDestroy() {
-        if (_spawnCoroutine != null)
-        {
-            StopCoroutine(_spawnCoroutine);
+    // Update is called once per frame
+    void Update() {
+        if (_game.Alarm == AlarmLevel.Green && _game.Enemies.Count < 6) {
+            SpawnEnemy(EnemyType.Shocker);
         }
-    }
-	
-	// Update is called once per frame
-	void Update () {
+        else 
+        if (_game.Alarm == AlarmLevel.Orange && _game.Enemies.Count < 12) {
+            SpawnEnemy(EnemyType.Blaster);
+        }
     }
 }

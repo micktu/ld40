@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerInput: {fileID: 1664432577}
   ContainerHUD: {fileID: 1979225893}
-  ExitPad: {fileID: 0}
+  ExitPad: {fileID: 1316681751791574, guid: 2c041f20ef4f2924eb489a10a24edce4, type: 2}
   PlayerOnExit: 0
   MusicSource: {fileID: 1799765337}
   CoinsText: {fileID: 207846136}
@@ -1131,6 +1131,7 @@ MonoBehaviour:
   Drone: {fileID: 0}
   Level: {fileID: 0}
   Coins: 0
+  KillCount: 0
   FinalCost: 250
   FinalEnergyCost: 200
   FinalText: {fileID: 1459578584}
@@ -1146,6 +1147,7 @@ MonoBehaviour:
   EnergyWhenHacking: 2
   EnergyRegenStep: 1
   LaserDamage: 100
+  Alarm: 0
 --- !u!114 &1664432576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,7 +1437,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979225893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: 360, z: 0}
+  m_LocalPosition: {x: -640, y: 381.90567, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 207846135}
@@ -1531,8 +1533,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989225320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 640, y: 360, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 519.5, y: 310, z: 0}
+  m_LocalScale: {x: 0.81171876, y: 0.81171876, z: 0.81171876}
   m_Children:
   - {fileID: 1635779320}
   - {fileID: 1979225894}
