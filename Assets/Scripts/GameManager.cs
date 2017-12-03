@@ -3,10 +3,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+
+public enum ResultType {
+    Playing,
+    Win,
+    Loose
+}
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public GameObject Level;
+    public ResultType Result;
 
     public static GameManager Instance
     {
@@ -54,6 +62,7 @@ public class GameManager : MonoBehaviour
         {
             {StrategyType.MainMenu, GetComponent<StrategyMainMenu>()},
             {StrategyType.Game, GetComponent<StrategyGame>()},
+            {StrategyType.ResultScreen, GetComponent<StrategyResultScreen>()},
         };
 
         foreach (var strategy in _strategies.Values)
@@ -92,8 +101,21 @@ public class GameManager : MonoBehaviour
         Enter(StrategyType.MainMenu);
     }
 
+    public void EnterWinScreen()
+    {
+        Result = ResultType.Win;
+        Enter(StrategyType.ResultScreen);
+    }
+
+    public void EnterLooseScreen()
+    {
+        Result = ResultType.Loose;
+        Enter(StrategyType.ResultScreen);
+    }
+
     public void EnterGame()
     {
+        Result = ResultType.Playing;
         Enter(StrategyType.Game);
     }
 

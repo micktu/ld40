@@ -140,7 +140,7 @@ public class StrategyGame : StrategyBase
     {
         if (Energy >= EnergyMax || Energy < 0) {
             Debug.Log(String.Format("Level ended, energy: {0}", Energy));
-            LeaveLevel();
+            LeaveLevel(false);
             return;
         }
         Energy -= EnergyDamage * Time.deltaTime;
@@ -150,16 +150,13 @@ public class StrategyGame : StrategyBase
             ExitPad.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             if (PlayerOnExit) {
                 Debug.Log(String.Format("Level ended, you won"));
-                LeaveLevel();
+                LeaveLevel(true);
             }
         }
     }
 
-    void LeaveLevel()
+    void LeaveLevel(bool win)
     {
-        Coins = 0;
-        Energy = 30f;
-
         if (_spawnCoroutine != null)
         {
             StopCoroutine(_spawnCoroutine);
@@ -187,8 +184,16 @@ public class StrategyGame : StrategyBase
             Destroy(spawner.gameObject);
         }
 
+        Coins = 0;
+        Energy = 30f;
 
-        _gameManager.EnterMainMenu();
+        if (win)
+        {
+            _gameManager.EnterWinScreen();
+        }
+        else {
+            _gameManager.EnterLooseScreen();
+        }
 
         Destroy(Level);
     }

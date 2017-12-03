@@ -2,4 +2,5 @@
 {
     MainMenu,
     Game,
+    ResultScreen,
 }
