@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ExitMaterial
-  m_Shader: {fileID: 4800000, guid: 6f119c1554d467c4989ee57d0532afc8, type: 3}
+  m_Name: health
+  m_Shader: {fileID: 4800000, guid: ce3347e81e6a1804db475d192e1d7961, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -54,27 +54,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _node_1650:
-        m_Texture: {fileID: 2800000, guid: 8afd37297bf9f044693a9d2a8b607fe1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _node_2431:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _node_3156:
-        m_Texture: {fileID: 2800000, guid: 8afd37297bf9f044693a9d2a8b607fe1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _node_8131:
-        m_Texture: {fileID: 2800000, guid: 29b8f60de49691a488154c587ab338fd, type: 3}
+    - _mask:
+        m_Texture: {fileID: 2800000, guid: 1d2107a58e8735b49bacd25c7913034b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - _Additionalbrightness: 0.21
     - _BumpScale: 1
-    - _CenterPower: 3
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -83,21 +69,19 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NumSpookesX2: 1.68
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpinSpeed: -0.08
     - _SrcBlend: 1
-    - _TWIRL: -4.1
     - _UVSec: 0
     - _ZWrite: 1
-    - _node_4616: 2
-    - _node_9899: 0
-    - _node_994: 0
-    - _node_994_copy: 5.982906
-    - _refractorSTR: 1
+    - _health: 0.296
+    - _opacity: 0.58
     m_Colors:
-    - _Color: {r: 0.46323532, g: 0.71125764, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _damageColor: {r: 1, g: 0, b: 0, a: 1}
+    - _healedColor: {r: 1, g: 1, b: 1, a: 1}
+    - _node_3245: {r: 1, g: 1, b: 1, a: 1}
+    - _node_5911: {r: 1, g: 0, b: 0, a: 1}
