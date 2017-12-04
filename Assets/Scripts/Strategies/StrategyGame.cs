@@ -261,6 +261,7 @@ public class StrategyGame : StrategyBase
         }
 
         Coins = 0;
+        EnergySpent = 0f;
         Energy = 30f;
 
         if (win)
