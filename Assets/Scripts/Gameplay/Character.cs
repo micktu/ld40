@@ -52,7 +52,7 @@ public class Character : Entity {
     public ParticleSystem ExplosionParticle;
 
     IEnumerator _soundTimeout() {
-        yield return new WaitForSeconds(1.66f);
+        yield return new WaitForSeconds(0.66f);
         _playDamage = false;
     }
 

@@ -93,7 +93,7 @@ public class StrategyGame : StrategyBase
     {
         HackingAreas = FindObjectsOfType<HackingArea>();
 
-        Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
+        Drone = Instantiate(DronePrefab, new Vector3(-1,0,0), Quaternion.identity);
         Drone.gameObject.SetActive(false);
         Drone.Role = CharacterRole.Drone;
 
@@ -125,6 +125,7 @@ public class StrategyGame : StrategyBase
             gm.MusicSource.clip = gm.MusicClip;
         }
         gm.MusicSource.Play();
+        Hud.SetGoals(FinalCost, FinalEnergyCost);
     }
 
     protected override void OnLeave()
@@ -176,8 +177,7 @@ public class StrategyGame : StrategyBase
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            LeaveLevel(false);
-            return;
+            Energy = -1;
         }
         if (Energy >= EnergyMax || Energy < 0) {
             if (!Character.IsDead) {
