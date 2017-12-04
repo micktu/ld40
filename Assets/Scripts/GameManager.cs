@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
     public AudioClip HackClip, HackEndClip;
 
     public AudioSource MusicSource;
-    
+
+    public Projectile ProjectilePrefab;
+
     public static GameManager Instance
     {
         get { return _instance; }

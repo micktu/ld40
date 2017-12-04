@@ -1917,6 +1917,8 @@ MonoBehaviour:
   HackClip: {fileID: 8300000, guid: 6e0535465b06a0846856246a0c73ff49, type: 3}
   HackEndClip: {fileID: 8300000, guid: 6fcf0fec515c7fb49b44837a6e571ff5, type: 3}
   MusicSource: {fileID: 1799765337}
+  ProjectilePrefab: {fileID: 114929549152366916, guid: 208596a1ac38581479c8a44760109916,
+    type: 2}
   Canvas: {fileID: 1989225323}
 --- !u!4 &1664432574
 Transform:

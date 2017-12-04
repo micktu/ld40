@@ -107,6 +107,13 @@ public class Enemy : Entity
         PlayHeatsound();
     }
 
+    public void SpawnProjectile(Vector3 direction)
+    {
+        var prefab = GameManager.Instance.ProjectilePrefab;
+        var projectile = Instantiate(prefab, transform.position, Quaternion.identity);
+        projectile.velocity = direction * 1.0f;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
     }

@@ -12,6 +12,7 @@ public enum EnemyState
     SeekingTerminal,
     FollowingPath,
     Stalking,
+    Shooting,
 }
 
 public class EnemyAI : MonoBehaviour
@@ -40,10 +41,14 @@ public class EnemyAI : MonoBehaviour
     public float TerminalInnerRadius = 2f;
     public float VisionRadius = 4.0f;
     public float IdlePeriod = 2.0f;
+    public float ShootRadius = 4.0f;
+    public float AimPeriod = 0.7f;
 
     private float _stateTime;
 
     private float _lastPathTime;
+
+    private int _shootLayerMask;
 
 	void Start()
     {
@@ -53,14 +58,14 @@ public class EnemyAI : MonoBehaviour
         _enemy = GetComponent<Enemy>();
 
         EnterState(EnemyState.SeekingTerminal);
-
+        _shootLayerMask = LayerMask.GetMask("Character", "Geometry", "Dummy");
     }
 
     void Update()
     {
         if (!_isSearchingPath)
         {
-            var hasVision = CheckPlayerVision();
+            var hasVision = CheckCharacterDistance(VisionRadius);
             if (hasVision && _state != EnemyState.FollowingPath)
             {
                 EnterState(EnemyState.Stalking);
@@ -78,7 +83,7 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.SeekingTerminal:
                 if (_isSearchingPath) break;
 
-                var hasVision = CheckPlayerVision();
+                var hasVision = CheckCharacterDistance(VisionRadius);
                 if (hasVision)
                 {
                     EnterState(EnemyState.Stalking);
@@ -102,6 +107,14 @@ public class EnemyAI : MonoBehaviour
                 _isSearchingPath = true;
                 break;
             case EnemyState.FollowingPath:
+                if (false && _enemy.Type == EnemyType.Blaster)
+                {
+                    if (CheckCharacterDistance(ShootRadius))
+                    {
+                        EnterState(EnemyState.Shooting);
+                        break;
+                    }
+                }
                 if (!Move())
                 {
                     EnterState(EnemyState.Idle);
@@ -113,6 +126,23 @@ public class EnemyAI : MonoBehaviour
                 _seeker.StartPath(transform.position, _game.Character.transform.position);
                 _isSearchingPath = true;
                 break;
+            case EnemyState.Shooting:
+                if (_stateTime >= AimPeriod)
+                {
+                    var dir = (_game.Character.transform.position - transform.position).normalized;
+                    var hit = Physics2D.Raycast(transform.position, dir, ShootRadius * 2.0f, _shootLayerMask);
+
+                    if (hit.collider != null && hit.collider.GetComponent<Character>() != null)
+                    {
+                        _enemy.SpawnProjectile(dir);
+                        EnterState(EnemyState.Shooting);
+                    }
+                    else
+                    {
+                        EnterState(EnemyState.Idle);
+                    }
+                }
+                break;
         }
 
         _stateTime += Time.deltaTime;
@@ -122,6 +152,11 @@ public class EnemyAI : MonoBehaviour
     {
         _state = state;
         _stateTime = 0.0f;
+    }
+
+    private bool CheckCharacterDistance(float distance)
+    {
+        return (_game.Character.transform.position - transform.position).sqrMagnitude <= distance * distance;
     }
 
     public bool Move()
@@ -142,20 +177,6 @@ public class EnemyAI : MonoBehaviour
 
         _enemy.AddSpringForce(dir, distance);
         return true;
-    }
-
-    private bool CheckPlayerVision()
-    {
-        var playerPosition = _game.Character.transform.position;
-        var dsq = (playerPosition - transform.position).sqrMagnitude;
-
-        if (dsq <= VisionRadius * VisionRadius)
-        {
-            //_hasAggro = true;
-            return true;
-        }
-
-        return false;
     }
 
     private HackingArea FindClosestHackingArea(out float distanceSquared)

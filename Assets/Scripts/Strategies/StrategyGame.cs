@@ -177,7 +177,6 @@ public class StrategyGame : StrategyBase
         var intensity = Energy / EnergyMax;
         color = new Color(1.0f, 1.0f - intensity, 1.0f - intensity, 1.0f);
         color = Color.Lerp(Color.white, color, Mathf.Sin(Time.realtimeSinceStartup * intensity * 3.0f));
-
     }
 
     void Update()
