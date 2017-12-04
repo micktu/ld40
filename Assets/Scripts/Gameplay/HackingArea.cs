@@ -34,7 +34,6 @@ public class HackingArea : MonoBehaviour {
             _game.Coins += terminalPrice;
             yield return new WaitForSeconds(1.0f);
         }
-        terminal.GetComponent<SpriteRenderer>().sprite = BrokenSprite;
         _stopHacking();
 	}
 
