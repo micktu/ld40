@@ -2,4 +2,5 @@
 {
     TitleScreen,
     ResultScreen,
+    CreditsScreen
 }

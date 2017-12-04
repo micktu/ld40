@@ -3,4 +3,5 @@
     MainMenu,
     Game,
     ResultScreen,
+    Credits,
 }
