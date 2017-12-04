@@ -87,9 +87,6 @@ public class StrategyGame : StrategyBase
         ContainerHUD.SetActive(false);
         FinalText.gameObject.SetActive(false);
 
-        var camera = Camera.main;
-        var halfHeight = camera.orthographicSize;
-        var halfWidth = halfHeight * camera.aspect;
     }
 
     public void InitLevel()

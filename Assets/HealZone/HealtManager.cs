@@ -23,7 +23,7 @@ public class HealtManager : MonoBehaviour {
     public void SetHealth(float health)
     {
         health = Mathf.Clamp(health, 0f, 1f);
-        Debug.Log(health);
+        //Debug.Log(health);
         rend.material.SetFloat("_health", health);
     }
 }
