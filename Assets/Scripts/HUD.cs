@@ -13,10 +13,10 @@ public class HUD : MonoBehaviour {
         CoinTracker.text = String.Format("Coins:   {0} // {1}", coins, cost);
         if (coins >= cost)
         {
-            CoinTracker.color = new Color(55, 255, 55);
+            CoinTracker.color = new Color(55f/255f, 1f, 55f/255f);
         }
         else {
-            CoinTracker.color = new Color(255,255,255);
+            CoinTracker.color = new Color(1f,1f,1f);
         }
     }
 
@@ -24,11 +24,11 @@ public class HUD : MonoBehaviour {
         EnergySpentTracker.text = String.Format("Spent:   {0} // {1}", energy, cost);
         if (energy >= cost)
         {
-            EnergySpentTracker.color = new Color(55, 255, 55);
+            EnergySpentTracker.color = new Color(55f/255f, 255f/255f, 55f/255f);
         }
         else
         {
-            EnergySpentTracker.color = new Color(255, 255, 255);
+            EnergySpentTracker.color = new Color(1f,1f,1f);
         }
 
     }
@@ -37,10 +37,10 @@ public class HUD : MonoBehaviour {
         EnergyTracker.text = String.Format("Energy: {0} // {1}", energy, max);
         if (energy / max >= 0.9 || energy <= min)
         {
-            EnergyTracker.color = new Color(255, 25, 25);
+            EnergyTracker.color = new Color(255f/255f, 25f/255f, 25f/255f);
         }
         else {
-            EnergyTracker.color = new Color(255,255,255);
+            EnergyTracker.color = new Color(1f,1f,1f);
         }
     }
 
