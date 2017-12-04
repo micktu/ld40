@@ -20,11 +20,11 @@ public class EnemySpawner : MonoBehaviour {
     void Update() {
         int shockers = _game.Enemies.FindAll((x) => x.Type == EnemyType.Shocker).Count;
         int blasters = _game.Enemies.FindAll((x) => x.Type == EnemyType.Blaster).Count;
-        if (_game.Alarm == AlarmLevel.Green && shockers < 6) {
+        if (_game.Alarm == AlarmLevel.Green && shockers < 20) {
             SpawnEnemy(EnemyType.Shocker);
         }
 
-        if (_game.Alarm == AlarmLevel.Orange && shockers < 12) {
+        if (_game.Alarm == AlarmLevel.Orange && shockers < 40) {
             SpawnEnemy(EnemyType.Shocker);
         }
         if (_game.Alarm == AlarmLevel.Orange && blasters < 1) {

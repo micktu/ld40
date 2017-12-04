@@ -287,8 +287,8 @@ MonoBehaviour:
   Acceleration: 60
   Drag: 30
   StopThreshold: 0.1
-  MaxSpeed: 3
-  MaxEnergy: 300
+  MaxSpeed: 5
+  MaxEnergy: 40
   EnergyDrain: 20
   SpriteFront: {fileID: 21300000, guid: 7c882364074416b4fac9898efd024457, type: 3}
   SpriteLeft: {fileID: 21300000, guid: c8014d67e3c951d47be81d6cf193d3e2, type: 3}
@@ -366,9 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d076f5de176caf4b8eac0958f285ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TerminalRadius: 3
+  TerminalRadius: 6
   TerminalInnerRadius: 1.5
-  VisionRadius: 5
+  VisionRadius: 7
   IdlePeriod: 2
 --- !u!212 &212544334868289902
 SpriteRenderer:
