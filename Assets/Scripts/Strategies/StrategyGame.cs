@@ -164,6 +164,9 @@ public class StrategyGame : StrategyBase
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            LeaveLevel(false);
+        }
         if (Energy >= EnergyMax || Energy < 0) {
             Debug.Log(String.Format("Level ended, energy: {0}", Energy));
             LeaveLevel(false);
