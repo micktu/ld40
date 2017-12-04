@@ -398,9 +398,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d076f5de176caf4b8eac0958f285ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TerminalRadius: 7
+  TerminalRadius: 16
   TerminalInnerRadius: 1.5
-  VisionRadius: 8
+  VisionRadius: 6
   IdlePeriod: 2
   ShootRadius: 4
   AimPeriod: 0.7
