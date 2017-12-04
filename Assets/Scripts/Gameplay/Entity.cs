@@ -24,6 +24,8 @@ public class Entity : MonoBehaviour {
     public Sprite SpriteFront, SpriteLeft;
     private SpriteRenderer _renderer;
 
+    private Transform _spriteTransform;
+
     public bool FlipX, FlipY;
 
     public float CurrentEnergy
@@ -48,6 +50,11 @@ public class Entity : MonoBehaviour {
         if (_renderer == null)
         {
             _renderer = transform.GetComponentInChildren<SpriteRenderer>();
+        }
+
+        if (transform.childCount > 0)
+        {
+            _spriteTransform = transform.GetChild(0);
         }
     }
 
@@ -98,7 +105,16 @@ public class Entity : MonoBehaviour {
 	            newOrientation = Mathf.Lerp(_lastOrientation, newOrientation, 0.5f);
 	            _lastOrientation = newOrientation;
 
-                transform.rotation = Quaternion.Euler(0.0f, 0.0f, newOrientation);
+                var rotation = Quaternion.Euler(0.0f, 0.0f, newOrientation);
+                if (_spriteTransform)
+                {
+                    _spriteTransform.rotation = rotation;
+                }
+	            else
+                {
+                    transform.rotation = rotation;
+                }
+                
             }
 	    }
 	}

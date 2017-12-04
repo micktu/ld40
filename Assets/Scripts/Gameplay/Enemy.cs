@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using EZCameraShake;
 using UnityEngine;
 using Pathfinding;
@@ -23,30 +24,40 @@ public class Enemy : Entity
 
     public static int LastBlastIndex, LastShotIndex;
 
-	new void Start ()
+    private SpriteRenderer _renderer;
+
+    public ParticleSystem ExplosionParticle;
+
+    new void Start ()
 	{
 	    base.Start();
         var aiPath = GetComponent<AIPath>();
 	    aiPath.target = _game.Character.transform;
 
 	    _as = GetComponents<AudioSource>();
+
+	    _renderer = GetComponentInChildren<SpriteRenderer>();
+
+	    //DOTween.To(() => _renderer.transform.position, x => _renderer.transform.position = x, Vector3.up * 0.2f, 2.0f).SetLoops(-1, LoopType.Yoyo).SetRelative(true).SetEase(Ease.InOutSine);
+
 	}
 
     new void Update ()
 	{
-	    //var direction = (_game.Character.transform.position - transform.position).normalized;
-
-	    //_velocity += (Vector2)direction * Acceleration * Time.deltaTime;
-
-        transform.localScale = Vector3.one * (0.5f + 0.5f * CurrentEnergy / MaxEnergy);
-
         //base.Update();
 
-	    if (_isDead && !_as[1].isPlaying)
+        if (_isDead && !_as[1].isPlaying)
 	    {
 	        Destroy(gameObject);
             _game.KillCount++;
 	    }
+        else
+        {
+            var intensity = CurrentEnergy / MaxEnergy;
+            var color = new Color(1.0f, 1.0f - intensity, 1.0f - intensity, 1.0f);
+            color = Color.Lerp(Color.white, color, Mathf.Sin(Time.realtimeSinceStartup * intensity * 3.0f));
+            _renderer.material.color = color;
+        }
 	}
 
     void LateUpdate()
@@ -74,7 +85,12 @@ public class Enemy : Entity
         _isDead = true;
         GetComponent<AIPath>().target = null;
         GetComponent<EnemyAI>().enabled = false;
+        _renderer.material.DOFade(0.0f, 5.0f);
         PlayBlast();
+
+        var particlePosition = transform.position;
+        particlePosition.z = -5.0f;
+        Instantiate(ExplosionParticle, particlePosition, Quaternion.identity);
 
         var shaker = CameraShaker.Instance;
         shaker.DefaultPosInfluence = new Vector3(0.25f, 0.25f, 0.0f);
