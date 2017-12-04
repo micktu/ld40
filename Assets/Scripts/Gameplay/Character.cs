@@ -44,7 +44,7 @@ public class Character : Entity {
     private Coroutine _soundCoroutine;
 
     private Seeker _seeker;
-    private bool _isDead;
+    public bool IsDead;
 
     private PathInterpolator _interpolator = new PathInterpolator();
     private ABPath _path;
@@ -287,7 +287,7 @@ public class Character : Entity {
             return;
         }
         _playDamage = true;
-        _as[1].clip = GameManager.Instance.DamageReceive;
+        _as[1].clip = GameManager.Instance.DamageReceive[UnityEngine.Random.Range(0, 2)];
         _as[1].loop = false;
         _as[1].Play();
         StartCoroutine(_soundTimeout());
@@ -295,16 +295,12 @@ public class Character : Entity {
 
     public IEnumerator OnDeath()
     {
-        if (_playDamage) {
-            yield return new WaitForSeconds(0f);
-        }
-        _playDamage = true;
         transform.localScale = Vector3.zero;
-        _isDead = true;
+        IsDead = true;
         //_renderer.material.DOFade(0.0f, 5.0f);
 
         _playDamage = true;
-        _as[1].clip = GameManager.Instance.Blasts[0];
+        _as[1].clip = GameManager.Instance.Blasts[UnityEngine.Random.Range(0, 4)];
         _as[1].Play();
 
         var particlePosition = transform.position;
@@ -316,7 +312,6 @@ public class Character : Entity {
         shaker.DefaultRotInfluence = new Vector3(0.0f, 0.0f, 0.25f);
         shaker.ShakeOnce(4.0f, 7.0f, 0.1f, 0.6f);
         yield return new WaitForSeconds(1.66f);
-        StartCoroutine(_soundTimeout());
         _game.LeaveLevel(false);
     }
 }

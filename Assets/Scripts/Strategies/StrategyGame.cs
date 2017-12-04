@@ -181,8 +181,9 @@ public class StrategyGame : StrategyBase
             LeaveLevel(false);
         }
         if (Energy >= EnergyMax || Energy < 0) {
-            StartCoroutine(Character.OnDeath());
-            // LeaveLevel(false);
+            if (!Character.IsDead) {
+                StartCoroutine(Character.OnDeath());
+            }
             return;
         }
 

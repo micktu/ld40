@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public AudioClip LaserStartClip, LaserEndClip, LaserShotClip;
     public AudioClip MusicClip, MainMenuClip, WinClip, LoseClip;
     public AudioClip HackClip, HackEndClip;
-    public AudioClip DamageReceive;
+    public List<AudioClip> DamageReceive = new List<AudioClip>();
 
     public AudioSource MusicSource;
     
