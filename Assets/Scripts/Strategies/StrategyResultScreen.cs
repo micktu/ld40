@@ -29,10 +29,10 @@ public class StrategyResultScreen : StrategyBase
         _screens[_activeScreen].Enter(_lastScreen);
         if (GameManager.Instance.Result == ResultType.Win)
         {
-            ResultText.text = "You WIN";
+            ResultText.text = "Info(): Compiled successfully";
         }
         else {
-            ResultText.text = "You LOOSE";
+            ResultText.text = "Error(): Connection Lost";
         }
     }
 
