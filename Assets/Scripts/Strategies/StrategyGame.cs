@@ -121,6 +121,7 @@ public class StrategyGame : StrategyBase
         var gm = GameManager.Instance;
         if (gm.MusicSource.clip != gm.MusicClip)
         {
+            gm.MusicSource.loop = true;
             gm.MusicSource.clip = gm.MusicClip;
         }
         gm.MusicSource.Play();
