@@ -35,6 +35,7 @@ public class StrategyResultScreen : StrategyBase
             var gm = GameManager.Instance;
             if (gm.MusicSource.clip != gm.WinClip)
             {
+                gm.MusicSource.loop = false;
                 gm.MusicSource.clip = gm.WinClip;
             }
             gm.MusicSource.Play();
@@ -46,6 +47,7 @@ public class StrategyResultScreen : StrategyBase
             var gm = GameManager.Instance;
             if (gm.MusicSource.clip != gm.LoseClip)
             {
+                gm.MusicSource.loop = false;
                 gm.MusicSource.clip = gm.LoseClip;
             }
             gm.MusicSource.Play();

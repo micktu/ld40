@@ -28,6 +28,7 @@ public class StrategyMainMenu : StrategyBase
         var gm = GameManager.Instance;
         if (gm.MusicSource.clip != gm.MainMenuClip)
         {
+            gm.MusicSource.loop = true;
             gm.MusicSource.clip = gm.MainMenuClip;
         }
         gm.MusicSource.Play();
