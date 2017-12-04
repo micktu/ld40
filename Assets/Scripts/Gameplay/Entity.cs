@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour {
     private SpriteRenderer _renderer;
 
     private Transform _spriteTransform;
+    private Animator _animator;
 
     public bool FlipX, FlipY;
 
@@ -50,11 +51,16 @@ public class Entity : MonoBehaviour {
         if (_renderer == null)
         {
             _renderer = transform.GetComponentInChildren<SpriteRenderer>();
+            _renderer = transform.GetComponentInChildren<SpriteRenderer>();
         }
 
         if (transform.childCount > 0)
         {
             _spriteTransform = transform.GetChild(0);
+        }
+        else
+        {
+            _animator = GetComponent<Animator>();
         }
     }
 
@@ -99,24 +105,39 @@ public class Entity : MonoBehaviour {
 
             _rb.velocity = _velocity;
 
-	        if (_velocity.sqrMagnitude > 1.0f)
+	        if (_velocity.sqrMagnitude > 1.0f && _animator == null)
 	        {
 	            var newOrientation = Mathf.Atan2(_velocity.x, -_velocity.y) * Mathf.Rad2Deg;
 	            newOrientation = Mathf.Lerp(_lastOrientation, newOrientation, 0.5f);
 	            _lastOrientation = newOrientation;
 
-                var rotation = Quaternion.Euler(0.0f, 0.0f, newOrientation);
-                if (_spriteTransform)
-                {
-                    _spriteTransform.rotation = rotation;
-                }
+	            var rotation = Quaternion.Euler(0.0f, 0.0f, newOrientation);
+	            if (_spriteTransform)
+	            {
+	                _spriteTransform.rotation = rotation;
+	            }
 	            else
-                {
-                    transform.rotation = rotation;
+	            {
+	                transform.rotation = rotation;
+	            }
+	        }
+
+	        if (_animator != null)
+	        {
+	            if (_velocity.sqrMagnitude > 0.3f * 0.3f)
+	            {
+	                _animator.SetBool("IsRunning", true);
+
+	                var scale = _renderer.transform.localScale;
+	                scale.x = Mathf.Sign(_velocity.x) * Mathf.Abs(scale.x);
+	                _renderer.transform.localScale = scale;
                 }
-                
+                else
+	            {
+	                _animator.SetBool("IsRunning", false);
+                }
             }
-	    }
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D other)
