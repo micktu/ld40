@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 	private StrategyGame _game;
-    private bool _visible = false;
 
     // Use this for initialization
     void Start () {
@@ -17,19 +16,8 @@ public class EnemySpawner : MonoBehaviour {
         _game.SpawnEnemy(transform.position, enemyType);
     }
 
-    void OnBecameInvisible() {
-        _visible = false;
-    }
-
-    void OnBecameVisible() {
-        _visible = true;
-    }
-
     // Update is called once per frame
-    void Update() {
-        if (_visible) {
-            return;
-        }
+    public void UpdateEnemies() {
         int shockers = _game.Enemies.FindAll((x) => x.Type == EnemyType.Shocker).Count;
         int blasters = _game.Enemies.FindAll((x) => x.Type == EnemyType.Blaster).Count;
         if (_game.Alarm == AlarmLevel.Green && shockers < 20) {

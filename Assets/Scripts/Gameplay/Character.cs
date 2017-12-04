@@ -287,7 +287,7 @@ public class Character : Entity {
             return;
         }
         _playDamage = true;
-        _as[1].clip = GameManager.Instance.DamageReceive[UnityEngine.Random.Range(0, 2)];
+        _as[1].clip = GameManager.Instance.DamageReceive[UnityEngine.Random.Range(0, GameManager.Instance.DamageReceive.Count)];
         _as[1].loop = false;
         _as[1].Play();
         StartCoroutine(_soundTimeout());
