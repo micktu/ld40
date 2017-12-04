@@ -21,4 +21,11 @@ public class ExitPad : MonoBehaviour {
            _game.PlayerOnExit = true;
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.GetComponent<Character>() != null) {
+           _game.PlayerOnExit = false;
+        }
+    }
 }

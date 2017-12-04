@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114161132637462624}
   - component: {fileID: 82231514108507872}
   m_Layer: 10
-  m_Name: Enemy_Shooter
+  m_Name: EnemyShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,9 +238,6 @@ MonoBehaviour:
   EnergyDrain: 20
   SpriteFront: {fileID: 21300000, guid: 7c882364074416b4fac9898efd024457, type: 3}
   SpriteLeft: {fileID: 21300000, guid: c8014d67e3c951d47be81d6cf193d3e2, type: 3}
-  SpriteFront2: {fileID: 21300000, guid: 7471b0c7f38490842929e075d70b8c54, type: 3}
-  SpriteLeft2: {fileID: 21300000, guid: 0077ebbe381328b418edc494fee63502, type: 3}
-  UseAltSprite: 0
   Type: 0
   Damage: 20
   _wasHit: 0

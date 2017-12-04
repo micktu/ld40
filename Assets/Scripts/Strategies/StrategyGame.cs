@@ -45,8 +45,8 @@ public class StrategyGame : StrategyBase
         get { return _enemies; }
     }
 
-    public int FinalCost = 300;
-    public int FinalEnergyCost = 200;
+    public int FinalCost = 250;
+    public int FinalEnergyCost = 300;
     public Text FinalText;
     public Text Goals;
 
