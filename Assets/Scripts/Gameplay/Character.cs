@@ -59,8 +59,9 @@ public class Character : Entity {
             Vector3.zero,
             Vector3.zero,
         };
-        var line = new VectorLine("Laser1", points, 5.0f, LineType.Continuous, Joins.Weld);
+        var line = new VectorLine("Laser1", points, 20.0f, LineType.Continuous, Joins.Weld);
         line.material = LaserMaterial;
+        line.textureScale = 4.0f;
         line.useViewportCoords = true;
         //line.SetColor(new Color32(10, 10, 200, 255));
         _laserLines.Add(line);

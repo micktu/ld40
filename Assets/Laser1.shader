@@ -55,7 +55,7 @@
 				//vec2 R = iResolution.xy;
 				uv /= R;
 
-				float g = .06 * R.y;
+				float g = .3 * R.y;
 				float d = 1. - abs(uv.y - (sin(uv.x * hscale*10. + t + hoffset) / 4. * vscale
 					+ .5))*R.y;
 				return  0.5 *(  clamp(d, 0., 1.)
@@ -70,7 +70,7 @@
 				//float2 R = float2(uv.x / _ScreenParams.x, uv.y / _ScreenParams.y);
 				//float2 R = float2(1.0, 1.0);
 				
-				float iTime = _Time[1];
+				float iTime = _Time[1] * 2.0f;
 
 				float2 u = (R*float2(1, .5) - uv) / R.y;
 				float T = floor(iTime * 20.),
@@ -87,7 +87,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float2 uv = 1 - i.uv;
-				uv.y = uv.y * 0.33 + 0.33;
+				//uv.y = uv.y * 0.5 + 0.25;
 				uv *= _Size.xy;
 				half4 c = half4(0, 0, 0, 0);
 
@@ -95,12 +95,12 @@
 
 				float t = 2.*iTime,
 				s = 1. + sin(iTime) * 5.;
-				c += Strand(uv, 0.234 + s, 1.0, 0.3, 10.0 * t) *float4(1, 0, 0, 1);
-				//c += Strand(uv, 0.645 + s, 1.5, 0.20, 8.3 * t) *float4(0, 1, 0, 1);
-				c += Strand(uv, 1.735 + s, 1.3, 0.2, 8.0 * t) *float4(0, 0, 1, 1);
-				//c += Strand(uv, 0.9245 + s, 1.6, 0.14, 12.0 * t) *float4(1, 1, 0, 1);
-				c += Strand(uv, 0.4234 + s, 1.9, 0.3, 14.0 * t) *float4(0, 1, 1, 1);
-				//c += Strand(uv, 0.14525 + s, 1.2, 0.18, 9.0 * t) *float4(1, 0, 1, 1);
+				c += Strand(uv, 0.234 + s, 1.0, 0.3, 10.0 * t) *float4(0, 0, 1, 1);
+				c += Strand(uv, 0.645 + s, 1.5, 0.20, 8.3 * t) *float4(1, 0, 1, 1);
+				c += Strand(uv, 1.735 + s, 1.3, 0.2, 8.0 * t) *float4(0, 1, 1, 1);
+				c += Strand(uv, 0.9245 + s, 1.6, 0.14, 12.0 * t) *float4(0, 1, 1, 1);
+				c += Strand(uv, 0.4234 + s, 1.9, 0.3, 14.0 * t) *float4(1, 1, 0, 1);
+				c += Strand(uv, 0.14525 + s, 1.2, 0.18, 9.0 * t) *float4(1, 0, 1, 1);
 				//c += clamp(Muzzle(uv), 0, 1);
 				//c.a = smoothstep(0.1, 0.3, c.a);
 				return c;
