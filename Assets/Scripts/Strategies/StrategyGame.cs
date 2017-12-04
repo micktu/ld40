@@ -179,6 +179,7 @@ public class StrategyGame : StrategyBase
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             LeaveLevel(false);
+            return;
         }
         if (Energy >= EnergyMax || Energy < 0) {
             if (!Character.IsDead) {
@@ -187,6 +188,8 @@ public class StrategyGame : StrategyBase
             return;
         }
 
+        EnemySpawner[] spawners = GameObject.FindObjectsOfType<EnemySpawner>();
+        spawners[Random.Range(0, spawners.Length - 1)].UpdateEnemies();
         TakeDamage();
 
         if (Alarm == AlarmLevel.Green && (TerminalsCaptured > 0 || KillCount >= 2)) {
