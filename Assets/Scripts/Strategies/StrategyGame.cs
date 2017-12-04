@@ -168,12 +168,23 @@ public class StrategyGame : StrategyBase
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            LeaveLevel(false);
+        }
         if (Energy >= EnergyMax || Energy < 0) {
             Debug.Log(String.Format("Level ended, energy: {0}", Energy));
             LeaveLevel(false);
             return;
         }
         Energy -= EnergyDamage * Time.deltaTime;
+
+        if (EnergyDamage >= 0) {
+            var intensity = Energy / EnergyMax;
+            var color = new Color(1.0f, 1.0f - intensity, 1.0f - intensity, 1.0f);
+            color = Color.Lerp(Color.white, color, Mathf.Sin(Time.realtimeSinceStartup * intensity * 3.0f));
+            Character.GetComponent<SpriteRenderer>().color = color;
+        }
+
         if (Alarm == AlarmLevel.Green && (TerminalsCaptured > 0 || KillCount >= 2)) {
             Alarm = AlarmLevel.Orange;
         } else 
