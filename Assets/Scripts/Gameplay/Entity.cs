@@ -99,7 +99,7 @@ public class Entity : MonoBehaviour {
 
             _rb.velocity = _velocity;
 
-	        if (_velocity.sqrMagnitude > Mathf.Epsilon)
+	        if (_velocity.sqrMagnitude > 1.0f)
 	        {
 	            var newOrientation = Mathf.Atan2(_velocity.x, -_velocity.y) * Mathf.Rad2Deg;
 	            newOrientation = Mathf.Lerp(_lastOrientation, newOrientation, 0.5f);
