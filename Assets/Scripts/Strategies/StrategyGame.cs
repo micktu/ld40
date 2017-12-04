@@ -93,7 +93,7 @@ public class StrategyGame : StrategyBase
     {
         HackingAreas = FindObjectsOfType<HackingArea>();
 
-        Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
+        Drone = Instantiate(DronePrefab, new Vector3(-1,0,0), Quaternion.identity);
         Drone.gameObject.SetActive(false);
         Drone.Role = CharacterRole.Drone;
 
