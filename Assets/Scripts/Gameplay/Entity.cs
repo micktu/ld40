@@ -70,10 +70,6 @@ public class Entity : MonoBehaviour {
     protected void Update () {
         _lastEnergy = CurrentEnergy;
         AddEnergy(-EnergyDrain * Time.deltaTime);
-        if (HealthManager != null) {
-            Debug.Log("!!!");
-            HealthManager.SetHealth(0.3f);
-        }
     }
 
 	void FixedUpdate()
