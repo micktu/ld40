@@ -72,6 +72,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - _Additionalbrightness: 0.21
     - _BumpScale: 1
     - _CenterPower: 3
     - _Cutoff: 0.5
@@ -93,9 +94,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - _node_4616: 2
+    - _node_9899: 0
     - _node_994: 0
     - _node_994_copy: 5.982906
     - _refractorSTR: 1
     m_Colors:
-    - _Color: {r: 0.32352942, g: 0.9160244, b: 1, a: 1}
+    - _Color: {r: 0.46323532, g: 0.71125764, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
