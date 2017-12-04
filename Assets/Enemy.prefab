@@ -292,6 +292,8 @@ MonoBehaviour:
   EnergyDrain: 20
   SpriteFront: {fileID: 21300000, guid: 7c882364074416b4fac9898efd024457, type: 3}
   SpriteLeft: {fileID: 21300000, guid: c8014d67e3c951d47be81d6cf193d3e2, type: 3}
+  FlipX: 0
+  FlipY: 0
   Type: 0
   Damage: 20
   _wasHit: 0

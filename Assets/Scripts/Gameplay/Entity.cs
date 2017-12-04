@@ -19,8 +19,12 @@ public class Entity : MonoBehaviour {
     private float _lastEnergy;
     private float _currentEnergy;
 
+    private float _lastOrientation;
+
     public Sprite SpriteFront, SpriteLeft;
     private SpriteRenderer _renderer;
+
+    public bool FlipX, FlipY;
 
     public float CurrentEnergy
     {
@@ -63,23 +67,23 @@ public class Entity : MonoBehaviour {
 	        {
 	            _velocity = Vector2.zero;
 	        }
-	        else if (_renderer != null)
-	        {
-	            var scale = _renderer.transform.localScale;
+	        //else if (_renderer != null)
+	        //{
+	        //    var scale = _renderer.transform.localScale;
 
-	            if (SpriteLeft != null && Mathf.Abs(_velocity.x) >= Mathf.Abs(_velocity.y))
-	            {
-	                _renderer.sprite = SpriteLeft;
-	                scale.x = -Mathf.Sign(_velocity.x) * Mathf.Abs(scale.x);
-                }
-                else if (SpriteFront != null)
-	            {
-	                _renderer.sprite = SpriteFront;
-	                scale.y = -Mathf.Sign(_velocity.y) * Mathf.Abs(scale.y);
-                }
+	        //    if (SpriteLeft != null && Mathf.Abs(_velocity.x) >= Mathf.Abs(_velocity.y))
+	        //    {
+	        //        _renderer.sprite = SpriteLeft;
+	        //        scale.x = -Mathf.Sign(_velocity.x) * Mathf.Abs(scale.x);
+         //       }
+         //       else if (SpriteFront != null)
+	        //    {
+	        //        _renderer.sprite = SpriteFront;
+	        //        scale.y = -Mathf.Sign(_velocity.y) * Mathf.Abs(scale.y);
+         //       }
 
-                _renderer.transform.localScale = scale;
-            }
+         //       _renderer.transform.localScale = scale;
+         //   }
 
             if (_velocity.sqrMagnitude > MaxSpeed * MaxSpeed)
 	        {
@@ -87,6 +91,15 @@ public class Entity : MonoBehaviour {
 	        }
 
             _rb.velocity = _velocity;
+
+	        if (_velocity.sqrMagnitude > Mathf.Epsilon)
+	        {
+	            var newOrientation = Mathf.Atan2(_velocity.x, -_velocity.y) * Mathf.Rad2Deg;
+	            newOrientation = Mathf.Lerp(_lastOrientation, newOrientation, 0.5f);
+	            _lastOrientation = newOrientation;
+
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, newOrientation);
+            }
 	    }
 	}
 

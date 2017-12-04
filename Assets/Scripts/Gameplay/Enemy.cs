@@ -73,6 +73,7 @@ public class Enemy : Entity
         transform.localScale = Vector3.zero;
         _isDead = true;
         GetComponent<AIPath>().target = null;
+        GetComponent<EnemyAI>().enabled = false;
         PlayBlast();
 
         var shaker = CameraShaker.Instance;
