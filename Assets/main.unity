@@ -1915,7 +1915,7 @@ MonoBehaviour:
   WinClip: {fileID: 8300000, guid: 66f2128adc5a17c498291ce81edd8861, type: 3}
   LoseClip: {fileID: 8300000, guid: 92c7ff1eb77afe246a89d9b0225e24ee, type: 3}
   HackClip: {fileID: 8300000, guid: 6e0535465b06a0846856246a0c73ff49, type: 3}
-  HackEndClip: {fileID: 8300000, guid: c3a2fc5e685d061449ad7f0f76994850, type: 3}
+  HackEndClip: {fileID: 8300000, guid: 6fcf0fec515c7fb49b44837a6e571ff5, type: 3}
   MusicSource: {fileID: 1799765337}
   Canvas: {fileID: 1989225323}
 --- !u!4 &1664432574
@@ -2576,7 +2576,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979225893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: 360.76132, z: 0}
+  m_LocalPosition: {x: -640, y: 354.53238, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1459578586}
@@ -2687,8 +2687,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989225320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 683, y: 385, z: 0}
-  m_LocalScale: {x: 1.0671875, y: 1.0671875, z: 1.0671875}
+  m_LocalPosition: {x: 695, y: 385, z: 0}
+  m_LocalScale: {x: 1.0859375, y: 1.0859375, z: 1.0859375}
   m_Children:
   - {fileID: 1635779320}
   - {fileID: 1979225894}
