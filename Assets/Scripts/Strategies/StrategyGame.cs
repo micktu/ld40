@@ -22,8 +22,7 @@ public class StrategyGame : StrategyBase
     public bool PlayerOnExit = false;
 
     public AudioSource MusicSource;
-
-    public Text CoinsText;
+    public HUD Hud;
 
     public Character CharacterPrefab, DronePrefab;
     public Enemy EnemyPrefab;
@@ -48,7 +47,6 @@ public class StrategyGame : StrategyBase
     public int FinalCost = 250;
     public int FinalEnergyCost = 300;
     public Text FinalText;
-    public Text Goals;
 
     // public float HitPointsMax = 100f;
     // public float HitPoints = 100f;
@@ -120,7 +118,6 @@ public class StrategyGame : StrategyBase
        
         ContainerHUD.SetActive(true);
         _spawnCoroutine = StartCoroutine(RegenEnergy());
-        Goals.text = String.Format("You need: {0} coins and {1} energy spent", FinalCost, FinalEnergyCost);
 
         Energy = EnergyStart;
 
@@ -200,7 +197,9 @@ public class StrategyGame : StrategyBase
             default:
                 break;
         }
-        CoinsText.text = String.Format("Coins: {0}\nEnergy: {1}\nEnergy spent: {2}\nAlarm: {3}", Coins, Energy, EnergySpent, AlarmColor);
+        Hud.SetCoins((int)Coins, FinalCost);
+        Hud.SetEnergy((int)Energy, (int)EnergyMax, (int)EnergyNeedForFire);
+        Hud.SetEnergySpent((int)EnergySpent, (int)FinalEnergyCost);
         if (Coins >= FinalCost && EnergySpent >= FinalEnergyCost) {
             FinalText.gameObject.SetActive(true);
             if (PlayerOnExit) {
