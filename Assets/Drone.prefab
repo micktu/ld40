@@ -150,7 +150,7 @@ MonoBehaviour:
   DeadZone: 0.3
   Acceleration: 25
   Drag: 0
-  StopThreshold: 0.1
+  StopThreshold: 0.2
   MaxSpeed: 3
   MaxEnergy: 100
   EnergyDrain: 20
