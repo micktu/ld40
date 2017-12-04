@@ -104,13 +104,13 @@ public class Character : Entity {
 
                 if (Mathf.Abs(direction.y) < DeadZone) direction.y = 0.0f;
                 else direction.y = Mathf.Sign(direction.y);
-                _velocity += direction * Acceleration * Time.deltaTime;
+                Velocity += direction * Acceleration * Time.deltaTime;
             }
             else
             {
                 if (!_interpolator.valid || _isAtDestination)
                 {
-                    _velocity = Vector3.zero;
+                    Velocity = Vector3.zero;
                 }
                 else
                 {
@@ -129,9 +129,7 @@ public class Character : Entity {
                     }
                     else
                     {
-                        var acceleration = Acceleration * dir.normalized * distance;
-                        var damping = _velocity * 2.0f * Mathf.Sqrt(Acceleration);
-                        _velocity += (acceleration - damping) * Time.deltaTime;
+                       AddSpringForce(dir, distance);
                     }
                 }
             }

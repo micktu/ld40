@@ -38,7 +38,7 @@ public class Enemy : Entity
 
 	    //_velocity += (Vector2)direction * Acceleration * Time.deltaTime;
 
-        transform.localScale = Vector3.one * (0.5f + CurrentEnergy / MaxEnergy);
+        transform.localScale = Vector3.one * (0.5f + 0.5f * CurrentEnergy / MaxEnergy);
 
         //base.Update();
 
@@ -48,11 +48,6 @@ public class Enemy : Entity
             _game.KillCount++;
 	    }
 	}
-
-    new void FixedUpdate()
-    {
-        
-    }
 
     void LateUpdate()
     {

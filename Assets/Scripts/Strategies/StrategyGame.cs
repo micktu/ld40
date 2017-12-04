@@ -67,6 +67,8 @@ public class StrategyGame : StrategyBase
     public float LaserDamage = 100f;
     public AlarmLevel Alarm;
 
+    public HackingArea[] HackingAreas;
+
     public IEnumerator RegenEnergy()
     {
         while (true)
@@ -94,6 +96,8 @@ public class StrategyGame : StrategyBase
 
     public void InitLevel()
     {
+        HackingAreas = FindObjectsOfType<HackingArea>();
+
         Drone = Instantiate(DronePrefab, Vector3.zero, Quaternion.identity);
         Drone.gameObject.SetActive(false);
         Drone.Role = CharacterRole.Drone;

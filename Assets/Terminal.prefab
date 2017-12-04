@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4962468071116372}
   - component: {fileID: 61456899964855112}
   - component: {fileID: 114212702507002260}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4665038852582124}
   - component: {fileID: 212237276207980378}
   - component: {fileID: 61788134673292616}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terminal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

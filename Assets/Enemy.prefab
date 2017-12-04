@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 58606505819526508}
   - component: {fileID: 50059317501255500}
   - component: {fileID: 114231950269047714}
+  - component: {fileID: 114608585819209366}
   - component: {fileID: 114554928468759364}
   - component: {fileID: 82561895084899302}
   - component: {fileID: 82711305249614692}
@@ -95,7 +96,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58606505819526508
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -328,7 +329,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117483991343566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
@@ -350,6 +351,21 @@ MonoBehaviour:
   pickNextWaypointDist: 2
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
+--- !u!114 &114608585819209366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117483991343566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d076f5de176caf4b8eac0958f285ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerminalRadius: 3
+  TerminalInnerRadius: 1.5
+  VisionRadius: 4
+  IdlePeriod: 2
 --- !u!212 &212544334868289902
 SpriteRenderer:
   m_ObjectHideFlags: 1

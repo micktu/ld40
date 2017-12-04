@@ -27,6 +27,12 @@ public class Entity : MonoBehaviour {
         get { return _currentEnergy; }
     }
 
+    public Vector2 Velocity
+    {
+        get { return _velocity; }
+        set { _velocity = value; }
+    }
+
     //public event Action OnEnergyDepleted;
     //public event Action OnMaxEnergyReached;
 
@@ -109,6 +115,13 @@ public class Entity : MonoBehaviour {
                 OnMaxEnergyReached();
             }
         }
+    }
+
+    public void AddSpringForce(Vector2 direction, float distance)
+    {
+        var acceleration = Acceleration * direction.normalized * distance;
+        var damping = Velocity * 2.0f * Mathf.Sqrt(Acceleration);
+        Velocity += (acceleration - damping) * Time.deltaTime;
     }
 
     protected virtual void OnEnergyDepleted()
