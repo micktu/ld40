@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
             {StrategyType.MainMenu, GetComponent<StrategyMainMenu>()},
             {StrategyType.Game, GetComponent<StrategyGame>()},
             {StrategyType.ResultScreen, GetComponent<StrategyResultScreen>()},
+            {StrategyType.Credits, GetComponent<StrategyCreditsScreen>()},
         };
 
         foreach (var strategy in _strategies.Values)
@@ -111,6 +112,11 @@ public class GameManager : MonoBehaviour
         Enter(StrategyType.MainMenu);
     }
 
+    public void EnterCredits()
+    {
+        Enter(StrategyType.Credits);
+    }
+
     public void EnterWinScreen()
     {
         Result = ResultType.Win;
@@ -132,6 +138,10 @@ public class GameManager : MonoBehaviour
     public void EnterGame(string levelName)
     {
         SceneManager.LoadScene(levelName);
+    }
+
+    public void ExitGame() {
+        Application.Quit();
     }
 
 }
