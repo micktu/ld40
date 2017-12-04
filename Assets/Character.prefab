@@ -149,7 +149,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -318,6 +318,8 @@ MonoBehaviour:
   EnergyDrain: 20
   SpriteFront: {fileID: 0}
   SpriteLeft: {fileID: 0}
+  FlipX: 0
+  FlipY: 0
   DebugText: {fileID: 0}
   Role: 0
   LaserMaterial: {fileID: 2100000, guid: 13327522d9e349646a6842a1204b0eda, type: 2}

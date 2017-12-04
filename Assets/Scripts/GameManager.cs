@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public List<AudioClip> Heats = new List<AudioClip>();
 
     public AudioClip LaserStartClip, LaserEndClip, LaserShotClip;
+    public AudioClip MusicClip, MainMenuClip, WinClip, LoseClip;
+    public AudioClip HackClip, HackEndClip;
 
     public AudioSource MusicSource;
     

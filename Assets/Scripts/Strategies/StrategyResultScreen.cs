@@ -31,10 +31,24 @@ public class StrategyResultScreen : StrategyBase
         {
             ResultText.text = "Info(): Compiled successfully";
             ResultText.color = new Color(55f/255f, 255f/255f, 55f/255f);
+
+            var gm = GameManager.Instance;
+            if (gm.MusicSource.clip != gm.WinClip)
+            {
+                gm.MusicSource.clip = gm.WinClip;
+            }
+            gm.MusicSource.Play();
         }
         else {
             ResultText.text = "Error(): Connection Lost";
             ResultText.color = new Color(255f/255f, 55f/255f, 55f/255f);
+
+            var gm = GameManager.Instance;
+            if (gm.MusicSource.clip != gm.LoseClip)
+            {
+                gm.MusicSource.clip = gm.LoseClip;
+            }
+            gm.MusicSource.Play();
         }
     }
 

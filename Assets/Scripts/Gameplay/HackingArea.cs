@@ -17,9 +17,12 @@ public class HackingArea : MonoBehaviour {
     private Coroutine _spawnCoroutine;
     private Character _hacker;
 
+    private AudioSource _as;
+
 	// Use this for initialization
 	void Start () {
 	    _game = GameManager.Instance.ActiveStrategy as StrategyGame;
+	    _as = terminal.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -36,6 +39,10 @@ public class HackingArea : MonoBehaviour {
         }
         if (_isHacking) {
             terminal.GetComponent<SpriteRenderer>().sprite = BrokenSprite;
+
+            _as.clip = GameManager.Instance.HackEndClip;
+            _as.loop = false;
+            _as.Play();
         }
         _stopHacking();
 	}
@@ -53,6 +60,10 @@ public class HackingArea : MonoBehaviour {
             _isHacking = true;
             terminal.GetComponent<SpriteRenderer>().sprite = ActiveSprite;
             _spawnCoroutine = StartCoroutine(EarnCoins());
+
+            _as.clip = GameManager.Instance.HackClip;
+            _as.loop = true;
+            _as.Play();
         }
     }
 
@@ -81,6 +92,11 @@ public class HackingArea : MonoBehaviour {
             if (totalCoins == 0) {
                 _hackable = false;
                 _game.TerminalsCaptured++;
+            }
+
+            if (_as.clip == GameManager.Instance.HackClip)
+            {
+                _as.Stop();
             }
         }
     }

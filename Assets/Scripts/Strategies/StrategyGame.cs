@@ -121,8 +121,12 @@ public class StrategyGame : StrategyBase
 
         Energy = EnergyStart;
 
-        MusicSource = GameManager.Instance.MusicSource;
-        MusicSource.Play();
+        var gm = GameManager.Instance;
+        if (gm.MusicSource.clip != gm.MusicClip)
+        {
+            gm.MusicSource.clip = gm.MusicClip;
+        }
+        gm.MusicSource.Play();
     }
 
     protected override void OnLeave()

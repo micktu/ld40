@@ -24,6 +24,13 @@ public class StrategyMainMenu : StrategyBase
     protected override void OnEnter(StrategyType lastStrategy)
     {
         _screens[_activeScreen].Enter(_lastScreen);
+
+        var gm = GameManager.Instance;
+        if (gm.MusicSource.clip != gm.MainMenuClip)
+        {
+            gm.MusicSource.clip = gm.MainMenuClip;
+        }
+        gm.MusicSource.Play();
     }
 
     protected override void OnLeave()
