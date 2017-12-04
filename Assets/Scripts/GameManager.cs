@@ -52,11 +52,13 @@ public class GameManager : MonoBehaviour
 
     public void PlayHover() {
         _as.clip = HoverClip;
+        _as.volume = 0.2f;
         _as.Play();
     }
 
     public void PlaySelect() {
         _as.clip = SelectClip;
+        _as.volume = 0.2f;
         _as.Play();
     }
 
