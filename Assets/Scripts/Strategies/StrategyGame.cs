@@ -172,12 +172,7 @@ public class StrategyGame : StrategyBase
             return;
         }
         Energy -= damage;
-
-        Color color;
-        var intensity = Energy / EnergyMax;
-        color = new Color(1.0f, 1.0f - intensity, 1.0f - intensity, 1.0f);
-        color = Color.Lerp(Color.white, color, Mathf.Sin(Time.realtimeSinceStartup * intensity * 3.0f));
-
+        Character.OnTakeDamage();
     }
 
     void Update()
@@ -186,8 +181,8 @@ public class StrategyGame : StrategyBase
             LeaveLevel(false);
         }
         if (Energy >= EnergyMax || Energy < 0) {
-            Debug.Log(String.Format("Level ended, energy: {0}", Energy));
-            LeaveLevel(false);
+            StartCoroutine(Character.OnDeath());
+            // LeaveLevel(false);
             return;
         }
 
@@ -232,7 +227,7 @@ public class StrategyGame : StrategyBase
         }
     }
 
-    void LeaveLevel(bool win)
+    public void LeaveLevel(bool win)
     {
         if (_spawnCoroutine != null)
         {

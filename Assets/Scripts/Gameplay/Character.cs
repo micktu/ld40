@@ -6,6 +6,8 @@ using Pathfinding.Util;
 using UnityEngine;
 using UnityEngine.UI;
 using Vectrosity;
+using DG.Tweening;
+using EZCameraShake;
 
 public enum CharacterRole
 {
@@ -28,6 +30,7 @@ public class Character : Entity {
     private AudioSource[] _as;
 
     private string _hAxis, _vAxis;
+    private bool _playDamage = false;
 
     public Vector3 Destination;
     private bool _isAtDestination;
@@ -36,12 +39,22 @@ public class Character : Entity {
     private List<VectorLine> _laserLines = new List<VectorLine>();
 
     private int _laserLayerMask;
+    private SpriteRenderer _renderer;
+
+    private Coroutine _soundCoroutine;
 
     private Seeker _seeker;
+    private bool _isDead;
 
     private PathInterpolator _interpolator = new PathInterpolator();
     private ABPath _path;
     private IMovementPlane _movementPlane;
+    public ParticleSystem ExplosionParticle;
+
+    IEnumerator _soundTimeout() {
+        yield return new WaitForSeconds(1.66f);
+        _playDamage = false;
+    }
 
     protected new void Start()
     {
@@ -266,5 +279,44 @@ public class Character : Entity {
         if (enemy != null && enemy.Type == EnemyType.Shocker) {
             _game.EnergyDamage -= enemy.Damage;
         }
+    }
+
+    public void OnTakeDamage()
+    {
+        if (_playDamage) {
+            return;
+        }
+        _playDamage = true;
+        _as[1].clip = GameManager.Instance.DamageReceive;
+        _as[1].loop = false;
+        _as[1].Play();
+        StartCoroutine(_soundTimeout());
+    }
+
+    public IEnumerator OnDeath()
+    {
+        if (_playDamage) {
+            yield return new WaitForSeconds(0f);
+        }
+        _playDamage = true;
+        transform.localScale = Vector3.zero;
+        _isDead = true;
+        //_renderer.material.DOFade(0.0f, 5.0f);
+
+        _playDamage = true;
+        _as[1].clip = GameManager.Instance.Blasts[0];
+        _as[1].Play();
+
+        var particlePosition = transform.position;
+        particlePosition.z = -5.0f;
+        Instantiate(ExplosionParticle, particlePosition, Quaternion.identity);
+
+        var shaker = CameraShaker.Instance;
+        shaker.DefaultPosInfluence = new Vector3(0.25f, 0.25f, 0.0f);
+        shaker.DefaultRotInfluence = new Vector3(0.0f, 0.0f, 0.25f);
+        shaker.ShakeOnce(4.0f, 7.0f, 0.1f, 0.6f);
+        yield return new WaitForSeconds(1.66f);
+        StartCoroutine(_soundTimeout());
+        _game.LeaveLevel(false);
     }
 }
