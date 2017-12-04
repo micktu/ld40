@@ -189,7 +189,7 @@ public class StrategyGame : StrategyBase
         }
 
         EnemySpawner[] spawners = GameObject.FindObjectsOfType<EnemySpawner>();
-        spawners[Random.Range(0, spawners.Length - 1)].UpdateEnemies();
+        spawners[Random.Range(0, spawners.Length)].UpdateEnemies();
         TakeDamage();
 
         if (Alarm == AlarmLevel.Green && (TerminalsCaptured > 0 || KillCount >= 2)) {
