@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
     public AudioClip LaserStartClip, LaserEndClip, LaserShotClip;
     public AudioClip MusicClip, MainMenuClip, WinClip, LoseClip;
     public AudioClip HackClip, HackEndClip;
+    public AudioClip HoverClip, SelectClip;
     public AudioClip DeathClip;
     public List<AudioClip> DamageReceive = new List<AudioClip>();
 
     public AudioSource MusicSource;
+    public AudioSource _as;
     
     public static GameManager Instance
     {
@@ -43,6 +45,16 @@ public class GameManager : MonoBehaviour
     public StrategyBase ActiveStrategy
     {
         get { return _strategies[_activeStrategy]; }
+    }
+
+    public void PlayHover() {
+        _as.clip = HoverClip;
+        _as.Play();
+    }
+
+    public void PlaySelect() {
+        _as.clip = SelectClip;
+        _as.Play();
     }
 
     void Awake()
@@ -90,6 +102,7 @@ public class GameManager : MonoBehaviour
     {
         //LevelIndex.LoadLevels();
 
+        _as = GetComponent<AudioSource>();
         EnterMainMenu();
         //EnterGame();
     }
