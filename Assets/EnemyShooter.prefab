@@ -314,9 +314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d076f5de176caf4b8eac0958f285ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TerminalRadius: 3
+  TerminalRadius: 7
   TerminalInnerRadius: 2
-  VisionRadius: 4
+  VisionRadius: 9
   IdlePeriod: 2
   ShootRadius: 4
   AimPeriod: 0.7
@@ -376,14 +376,14 @@ MonoBehaviour:
   Drag: 30
   StopThreshold: 0.1
   MaxSpeed: 3
-  MaxEnergy: 300
+  MaxEnergy: 120
   EnergyDrain: 20
   SpriteFront: {fileID: 21300000, guid: 7471b0c7f38490842929e075d70b8c54, type: 3}
   SpriteLeft: {fileID: 21300000, guid: 0077ebbe381328b418edc494fee63502, type: 3}
   FlipX: 0
   FlipY: 0
   Type: 1
-  Damage: 20
+  Damage: 40
   _wasHit: 0
   ExplosionParticle: {fileID: 198841781786156066, guid: ef3e51728b8064042be1eabf1668df51,
     type: 2}
