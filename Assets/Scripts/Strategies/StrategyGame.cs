@@ -44,7 +44,7 @@ public class StrategyGame : StrategyBase
         get { return _enemies; }
     }
 
-    public int FinalCost = 250;
+    public int FinalCost = 350;
     public int FinalEnergyCost = 300;
     public Text FinalText;
 
@@ -168,12 +168,15 @@ public class StrategyGame : StrategyBase
 
     void TakeDamage() {
         float damage = EnergyDamage * Time.deltaTime;
+        if (damage == 0) {
+            return;
+        }
         Energy -= damage;
 
-            var intensity = EnergyMax * 0.8f / Energy;
-            var color = new Color(1.0f, 1.0f - intensity, 1.0f - intensity, 1.0f);
-            color = Color.Lerp(Color.white, color, Mathf.Sin(Time.realtimeSinceStartup * intensity * 3.0f));
-            Character.GetComponent<SpriteRenderer>().color = color;
+        Color color;
+        var intensity = Energy / EnergyMax;
+        color = new Color(1.0f, 1.0f - intensity, 1.0f - intensity, 1.0f);
+        color = Color.Lerp(Color.white, color, Mathf.Sin(Time.realtimeSinceStartup * intensity * 3.0f));
 
     }
 
@@ -181,7 +184,6 @@ public class StrategyGame : StrategyBase
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             LeaveLevel(false);
-            return;
         }
         if (Energy >= EnergyMax || Energy < 0) {
             Debug.Log(String.Format("Level ended, energy: {0}", Energy));

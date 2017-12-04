@@ -24,16 +24,11 @@ public class EnemySpawner : MonoBehaviour {
             SpawnEnemy(EnemyType.Shocker);
         }
 
-        if (_game.Alarm == AlarmLevel.Orange && shockers < 40) {
+        if (_game.Alarm != AlarmLevel.Green && shockers < 40) {
             SpawnEnemy(EnemyType.Shocker);
         }
-        if (_game.Alarm == AlarmLevel.Orange && blasters < 1) {
+        if (_game.Alarm != AlarmLevel.Green && blasters < 1) {
             SpawnEnemy(EnemyType.Blaster);
         }
-
-        /*
-        if (_game.Alarm == AlarmLevel.Red) {
-        }
-        */
     }
 }
