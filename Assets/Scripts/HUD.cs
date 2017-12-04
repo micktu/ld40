@@ -8,6 +8,11 @@ public class HUD : MonoBehaviour {
     public Text CoinTracker;
     public Text EnergyTracker;
     public Text EnergySpentTracker;
+    public Text Goals;
+
+    public void SetGoals(int coins, int energy) {
+        Goals.text = String.Format("Earn {0} coins && spend {1} energy", coins, energy);
+    }
 
     public void SetCoins(int coins, int cost) {
         CoinTracker.text = String.Format("Coins:   {0} // {1}", coins, cost);

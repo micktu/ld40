@@ -124,6 +124,7 @@ public class StrategyGame : StrategyBase
             gm.MusicSource.clip = gm.MusicClip;
         }
         gm.MusicSource.Play();
+        Hud.SetGoals(FinalCost, FinalEnergyCost);
     }
 
     protected override void OnLeave()
