@@ -1916,6 +1916,11 @@ MonoBehaviour:
   LoseClip: {fileID: 8300000, guid: 92c7ff1eb77afe246a89d9b0225e24ee, type: 3}
   HackClip: {fileID: 8300000, guid: 6e0535465b06a0846856246a0c73ff49, type: 3}
   HackEndClip: {fileID: 8300000, guid: 6fcf0fec515c7fb49b44837a6e571ff5, type: 3}
+  DeathClip: {fileID: 8300000, guid: e6185d5b953c63249bd86b0dc82d1864, type: 3}
+  DamageReceive:
+  - {fileID: 8300000, guid: 225350e421ebdb84981f98f6a1cc6d7a, type: 3}
+  - {fileID: 8300000, guid: 5efbb547dc3d8b14fb4e8d71d03794d9, type: 3}
+  - {fileID: 8300000, guid: 2ef612c2e1e577e4398ab3ec9b1b27e8, type: 3}
   MusicSource: {fileID: 1799765337}
   Canvas: {fileID: 1989225323}
 --- !u!4 &1664432574
@@ -2576,7 +2581,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979225893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: 354.53238, z: 0}
+  m_LocalPosition: {x: -640, y: 347.41098, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1459578586}
@@ -2687,8 +2692,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989225320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 695, y: 385, z: 0}
-  m_LocalScale: {x: 1.0859375, y: 1.0859375, z: 1.0859375}
+  m_LocalPosition: {x: 519.5, y: 282, z: 0}
+  m_LocalScale: {x: 0.81171876, y: 0.81171876, z: 0.81171876}
   m_Children:
   - {fileID: 1635779320}
   - {fileID: 1979225894}

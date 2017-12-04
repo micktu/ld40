@@ -300,7 +300,7 @@ public class Character : Entity {
         //_renderer.material.DOFade(0.0f, 5.0f);
 
         _playDamage = true;
-        _as[1].clip = GameManager.Instance.Blasts[UnityEngine.Random.Range(0, 4)];
+        _as[1].clip = GameManager.Instance.DeathClip;
         _as[1].Play();
 
         var particlePosition = transform.position;
@@ -311,7 +311,7 @@ public class Character : Entity {
         shaker.DefaultPosInfluence = new Vector3(0.25f, 0.25f, 0.0f);
         shaker.DefaultRotInfluence = new Vector3(0.0f, 0.0f, 0.25f);
         shaker.ShakeOnce(4.0f, 7.0f, 0.1f, 0.6f);
-        yield return new WaitForSeconds(1.66f);
+        yield return new WaitForSeconds(3f);
         _game.LeaveLevel(false);
     }
 }

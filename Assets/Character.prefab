@@ -284,6 +284,9 @@ MonoBehaviour:
   LaserPrefab: {fileID: 1096590678479774, guid: fd4cad55e3f9833428d40bcc8c18872d,
     type: 2}
   Destination: {x: 0, y: 0, z: 0}
+  IsDead: 0
+  ExplosionParticle: {fileID: 198841781786156066, guid: ef3e51728b8064042be1eabf1668df51,
+    type: 2}
 --- !u!212 &212890467118397160
 SpriteRenderer:
   m_ObjectHideFlags: 1
