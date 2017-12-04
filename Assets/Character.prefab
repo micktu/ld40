@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 82840390348515892}
   - component: {fileID: 82814425327160164}
   - component: {fileID: 212890467118397160}
+  - component: {fileID: 95790764508827986}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -256,6 +257,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &95790764508827986
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027973932227772}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f608e39376d33de4eb52e4c4aa99037c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114861672582602638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,10 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f45205c355f4a45a0769ab227d150a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthManager: {fileID: 0}
   DeadZone: 0.3
   Acceleration: 40
   Drag: 30
-  StopThreshold: 0.1
+  StopThreshold: 0.2
   MaxSpeed: 4
   MaxEnergy: 100
   EnergyDrain: 20
@@ -321,7 +340,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 828d26a80fa8c514799dd0a007526653, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57c2c00c718c81e4cae76cb9ce7d7566, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

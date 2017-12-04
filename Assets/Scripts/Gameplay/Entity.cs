@@ -130,7 +130,7 @@ public class Entity : MonoBehaviour {
 
 	        if (_animator != null)
 	        {
-	            if (_velocity.sqrMagnitude > 0.3f * 0.3f)
+	            if (_velocity.sqrMagnitude > 0.5f * 0.5f)
 	            {
 	                _animator.SetBool("IsRunning", true);
 
