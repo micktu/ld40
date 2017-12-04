@@ -1064,13 +1064,16 @@ MonoBehaviour:
     type: 2}
   EnemyPrefab: {fileID: 114163433484159950, guid: e0aac5fa66c5bc04189d5cb6c1a84310,
     type: 2}
+  EnemyShooterPrefab: {fileID: 114743773683447228, guid: 8a990ae62a9f68e4fb15e71e0ea8e197,
+    type: 2}
   Character: {fileID: 0}
   Drone: {fileID: 0}
   Level: {fileID: 0}
   Coins: 0
   KillCount: 0
+  TerminalsCaptured: 0
   FinalCost: 250
-  FinalEnergyCost: 200
+  FinalEnergyCost: 300
   FinalText: {fileID: 1459578584}
   Goals: {fileID: 1249119816}
   EnergyDamage: 0
@@ -1374,7 +1377,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979225893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640, y: 360, z: 0}
+  m_LocalPosition: {x: -640, y: 279.03754, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 207846135}
@@ -1470,8 +1473,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989225320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 640, y: 360, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 519.5, y: 226.5, z: 0}
+  m_LocalScale: {x: 0.81171876, y: 0.81171876, z: 0.81171876}
   m_Children:
   - {fileID: 1635779320}
   - {fileID: 1979225894}
