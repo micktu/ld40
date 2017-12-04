@@ -7,6 +7,8 @@ public class Entity : MonoBehaviour {
 	protected StrategyGame _game;
 	protected Rigidbody2D _rb;
 
+    public HealtManager HealthManager;
+
 	protected Vector2 _velocity;
 	public float DeadZone = 0.3f;
 	public float Acceleration = 50.0f;
@@ -62,6 +64,10 @@ public class Entity : MonoBehaviour {
     protected void Update () {
         _lastEnergy = CurrentEnergy;
         AddEnergy(-EnergyDrain * Time.deltaTime);
+        if (HealthManager != null) {
+            Debug.Log("!!!");
+            HealthManager.SetHealth(0.3f);
+        }
     }
 
 	void FixedUpdate()

@@ -46,6 +46,10 @@ public class Enemy : Entity
 	{
         //base.Update();
 
+        if (HealthManager != null) {
+            HealthManager.SetHealth(CurrentEnergy / MaxEnergy);
+        }
+
         if (_isDead && !_as[1].isPlaying)
 	    {
 	        Destroy(gameObject);
