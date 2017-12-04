@@ -342,7 +342,8 @@ MonoBehaviour:
   Type: 1
   Damage: 20
   _wasHit: 0
-  ExplosionParticle: {fileID: 0}
+  ExplosionParticle: {fileID: 198841781786156066, guid: ef3e51728b8064042be1eabf1668df51,
+    type: 2}
 --- !u!114 &114942489346914152
 MonoBehaviour:
   m_ObjectHideFlags: 1
