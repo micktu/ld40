@@ -176,8 +176,7 @@ public class StrategyGame : StrategyBase
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            LeaveLevel(false);
-            return;
+            Energy = -1;
         }
         if (Energy >= EnergyMax || Energy < 0) {
             if (!Character.IsDead) {
