@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _maskTexture:
-        m_Texture: {fileID: 2800000, guid: c5adc3d876c1c4543b8be5e22ed31fc7, type: 3}
+        m_Texture: {fileID: 2800000, guid: c8aa426caf0962543a4e6d4e5775c195, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _node_1061:
@@ -101,4 +101,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.028384497, g: 0.77205884, b: 0.18737708, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Tint: {r: 0.43042594, g: 1, b: 0.20588237, a: 1}
+    - _Tint: {r: 0.20588237, g: 0.47423947, b: 1, a: 1}

@@ -76,12 +76,12 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _health: 0.296
-    - _opacity: 0.58
+    - _health: 1
+    - _opacity: 0.9
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _damageColor: {r: 1, g: 0, b: 0, a: 0}
-    - _healedColor: {r: 0.14705884, g: 0.4731835, b: 1, a: 1}
+    - _healedColor: {r: 0, g: 1, b: 0.9117646, a: 1}
     - _node_3245: {r: 1, g: 1, b: 1, a: 1}
     - _node_5911: {r: 1, g: 0, b: 0, a: 1}
